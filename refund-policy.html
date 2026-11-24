@@ -4,38 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Refund & Cancellation Policy - Skrollify</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0b0f17;
-            --card-bg: #141b26;
-            --card-hover: #1b2433;
-            --text-primary: #f0f6fc;
-            --text-secondary: #94a3b8;
-            --accent: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.15);
-            --border: #233144;
-            --success: #34d399;
-            --warning: #fbbf24;
+            --bg-canvas: #FAF7F2;
+            --card-surface: #FFFFFF;
+            --card-subtle: #F7F3EB;
+            --text-primary: #1C1917;
+            --text-secondary: #57534E;
+            --border: #E8DFD1;
+            --mint-bg: #ECFDF5;
+            --mint-border: #A7F3D0;
+            --mint-text: #065F46;
+            --emerald: #10B981;
+            --emerald-dark: #059669;
+            --gold-bg: #FEF3C7;
+            --gold-border: #FDE68A;
+            --gold-text: #92400E;
         }
         * { box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             line-height: 1.7;
             color: var(--text-primary);
-            background-color: var(--bg-color);
+            background-color: var(--bg-canvas);
             margin: 0;
             padding: 0;
         }
         header {
-            background: #111722;
-            border-bottom: 1px solid var(--border);
+            background: var(--card-surface);
+            border-bottom: 1.5px solid var(--border);
             padding: 16px 24px;
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
         .header-content {
-            max-width: 900px;
+            max-width: 920px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -45,61 +53,94 @@
         }
         .brand {
             font-size: 20px;
-            font-weight: 800;
-            color: #ffffff;
+            font-weight: 900;
+            color: var(--text-primary);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+        }
+        .brand img {
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
         }
         nav {
             display: flex;
-            gap: 16px;
+            gap: 10px;
         }
         nav a {
             color: var(--text-secondary);
             text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            padding: 6px 12px;
-            border-radius: 6px;
+            font-size: 13.5px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 10px;
             transition: all 0.2s;
         }
         nav a:hover, nav a.active {
-            color: var(--accent);
-            background: var(--accent-glow);
+            color: var(--emerald-dark);
+            background: var(--mint-bg);
+            border: 1px solid var(--mint-border);
         }
         .container {
-            max-width: 900px;
+            max-width: 920px;
             margin: 32px auto;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 40px 36px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            background: var(--card-surface);
+            border: 1.5px solid var(--border);
+            border-radius: 24px;
+            padding: 44px 38px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.03);
+        }
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--gold-bg);
+            color: var(--gold-text);
+            border: 1.5px solid var(--gold-border);
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        .title-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+        .title-logo {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
         h1 {
-            color: #ffffff;
+            color: var(--text-primary);
             font-size: 32px;
-            font-weight: 800;
-            margin-top: 0;
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 16px;
+            font-weight: 900;
+            margin: 0;
+            letter-spacing: -0.5px;
         }
         h2 {
-            color: var(--accent);
+            color: var(--emerald-dark);
             font-size: 21px;
-            font-weight: 700;
+            font-weight: 800;
             margin-top: 36px;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1.5px solid var(--border);
             padding-bottom: 8px;
         }
         p, li {
             color: var(--text-secondary);
             font-size: 15px;
+            font-weight: 600;
         }
         strong {
             color: var(--text-primary);
+            font-weight: 800;
         }
         ul, ol {
             padding-left: 24px;
@@ -108,42 +149,41 @@
             margin-bottom: 8px;
         }
         .highlight-box {
-            background: var(--accent-glow);
-            border-left: 4px solid var(--accent);
-            padding: 16px 20px;
+            background: var(--card-subtle);
+            border-left: 4.5px solid var(--emerald);
+            padding: 18px 22px;
             margin: 24px 0;
-            border-radius: 0 10px 10px 0;
+            border-radius: 0 14px 14px 0;
+            border-top: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
         }
         .step-box {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 18px 22px;
-            margin: 16px 0;
-        }
-        .badge {
-            display: inline-block;
-            background: rgba(52, 211, 153, 0.12);
-            color: var(--success);
-            border: 1px solid rgba(52, 211, 153, 0.3);
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 12px;
+            background: #FFFDF9;
+            border: 1.5px solid var(--border);
+            border-radius: 16px;
+            padding: 22px 24px;
+            margin: 18px 0;
         }
         .footer {
             margin-top: 48px;
-            font-size: 13px;
-            color: #64748b;
-            border-top: 1px solid var(--border);
-            padding-top: 20px;
+            font-size: 13.5px;
+            color: var(--text-secondary);
+            border-top: 1.5px solid var(--border);
+            padding-top: 24px;
             text-align: center;
+            font-weight: 600;
+        }
+        .footer a {
+            color: var(--emerald-dark);
+            text-decoration: none;
+            font-weight: 800;
         }
         @media (max-width: 640px) {
             .container { padding: 24px 18px; margin: 16px 8px; }
             h1 { font-size: 26px; }
             h2 { font-size: 19px; }
+            .title-row { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
@@ -151,22 +191,30 @@
 
 <header>
     <div class="header-content">
-        <a href="index.html" class="brand">🌱 Skrollify Legal</a>
+        <a href="index.html" class="brand">
+            <img src="skrollify_logo.png" alt="Skrollify Logo">
+            <span>Skrollify</span>
+        </a>
         <nav>
             <a href="privacy-policy.html">Privacy Policy</a>
-            <a href="terms.html">Terms & Conditions</a>
-            <a href="refund-policy.html" class="active">Refund Policy</a>
+            <a href="terms.html">Terms</a>
+            <a href="refund-policy.html" class="active">Refunds</a>
         </nav>
     </div>
 </header>
 
 <div class="container">
-    <div class="badge">💳 Transparent Refund & Cancellation Policy</div>
-    <h1>Refund & Cancellation Policy for Skrollify</h1>
-    <p><strong>Effective Date:</strong> November 24, 2026</p>
-    <p><strong>Last Updated:</strong> November 24, 2026</p>
-    <p><strong>Application:</strong> Skrollify (Package: <code>com.ayanhaider.skrollify</code>)</p>
-    <p><strong>Developer:</strong> Ayan Haider (Contact: <code>ayanhaider.dev@gmail.com</code>)</p>
+    <div class="header-badge">💳 Fair & Transparent Refund Policy</div>
+
+    <div class="title-row">
+        <img src="skrollify_logo.png" alt="Skrollify App Icon" class="title-logo">
+        <div>
+            <h1>Refund & Cancellation Policy</h1>
+            <p style="margin: 4px 0 0; color: var(--text-secondary); font-size: 14px; font-weight: 700;">
+                Application: <code>com.ayanhaider.skrollify</code> · Effective Date: November 24, 2026
+            </p>
+        </div>
+    </div>
 
     <div class="highlight-box">
         <strong>Our Customer Guarantee:</strong> We want you to be 100% satisfied with Skrollify. Because all payments and subscriptions are handled through Google Play Billing, both Google's automated refund systems and our direct developer support are available to assist you.
@@ -178,9 +226,9 @@
     <h2>2. Immediate Refunds within 48 Hours (Fastest Method)</h2>
     <p>If less than 48 hours have passed since you made an in-app purchase or paid for a subscription:</p>
     <div class="step-box">
-        <strong>How to request an instant refund through Google Play:</strong>
+        <strong>How to request an instant automated refund through Google Play:</strong>
         <ol>
-            <li>Open a web browser and visit: <a href="https://play.google.com/store/account/orderhistory" target="_blank" style="color:var(--accent);">Google Play Order History</a> (or open the Google Play Help Center).</li>
+            <li>Open a web browser and visit: <a href="https://play.google.com/store/account/orderhistory" target="_blank" style="color:var(--emerald-dark); font-weight:800;">Google Play Order History</a> (or the Google Play Help Center).</li>
             <li>Locate your Skrollify order.</li>
             <li>Select <strong>Request a refund</strong> or <strong>Report a problem</strong>.</li>
             <li>Choose the reason (e.g., "I purchased this by accident" or "Purchase not working as expected") and submit.</li>
@@ -192,7 +240,7 @@
     <p>If more than 48 hours have passed and Google Play directs you to contact the developer, we are happy to assist you directly:</p>
     <ul>
         <li><strong>Eligibility:</strong> If you experienced a persistent technical defect that prevented Pro features from activating, or if you were charged mistakenly due to an unexpected renewal and reach out within 14 days, we can initiate a refund directly through the Google Play Developer Console.</li>
-        <li><strong>Required Information:</strong> Send an email to <code>ayanhaider.dev@gmail.com</code> with:
+        <li><strong>Required Information:</strong> Send an email to <code>ayanhaidershah0@gmail.com</code> with:
             <ul>
                 <li>Subject: <code>Refund Request - Skrollify [Order ID]</code></li>
                 <li>Your Google Play Order Number (starts with <code>GPA.xxxx-xxxx-xxxx-xxxxx</code>, found on your emailed Google receipt).</li>
@@ -227,11 +275,12 @@
 
     <h2>7. Contact Us</h2>
     <p>If you need assistance with any purchase, billing verification, or refund request, please email us directly:</p>
-    <p><strong>Email:</strong> <a href="mailto:ayanhaider.dev@gmail.com" style="color:var(--accent);">ayanhaider.dev@gmail.com</a></p>
+    <p><strong>Developer:</strong> Ayan Haider<br>
+    <strong>Email:</strong> <a href="mailto:ayanhaidershah0@gmail.com" style="color:var(--emerald-dark); font-weight:800;">ayanhaidershah0@gmail.com</a></p>
     <p>We aim to respond to all billing inquiries within 24–48 business hours.</p>
 
     <div class="footer">
-        &copy; 2026 Skrollify · All rights reserved.
+        &copy; 2026 Skrollify · Developed by Ayan Haider · <a href="mailto:ayanhaidershah0@gmail.com">ayanhaidershah0@gmail.com</a>
     </div>
 </div>
 

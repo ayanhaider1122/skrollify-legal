@@ -3,25 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skrollify - Legal, Privacy & Compliance Portal</title>
+    <title>Skrollify - Legal & Privacy Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0b0f17;
-            --card-bg: #141b26;
-            --card-hover: #1b2433;
-            --text-primary: #f0f6fc;
-            --text-secondary: #94a3b8;
-            --accent: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.15);
-            --border: #233144;
-            --success: #34d399;
+            --bg-canvas: #FAF7F2;
+            --card-surface: #FFFFFF;
+            --card-subtle: #F7F3EB;
+            --text-primary: #1C1917;
+            --text-secondary: #57534E;
+            --border: #E8DFD1;
+            --mint-bg: #ECFDF5;
+            --mint-border: #A7F3D0;
+            --mint-text: #065F46;
+            --gold-bg: #FEF3C7;
+            --gold-border: #FDE68A;
+            --gold-text: #92400E;
+            --emerald: #10B981;
         }
         * { box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.65;
             color: var(--text-primary);
-            background-color: var(--bg-color);
+            background-color: var(--bg-canvas);
             margin: 0;
             padding: 0;
             display: flex;
@@ -29,12 +36,14 @@
             min-height: 100vh;
         }
         header {
-            background: #111722;
-            border-bottom: 1px solid var(--border);
-            padding: 20px 24px;
+            background: var(--card-surface);
+            border-bottom: 1.5.dp solid var(--border);
+            border-bottom: 1.5px solid var(--border);
+            padding: 16px 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
         .header-content {
-            max-width: 900px;
+            max-width: 920px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -42,119 +51,164 @@
         }
         .brand {
             font-size: 22px;
-            font-weight: 800;
-            color: #ffffff;
+            font-weight: 900;
+            color: var(--text-primary);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+        }
+        .brand img {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+        .official-tag {
+            background: var(--mint-bg);
+            color: var(--mint-text);
+            border: 1.5px solid var(--mint-border);
+            font-size: 12px;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 100px;
+            letter-spacing: 0.3px;
         }
         main {
             flex: 1;
-            max-width: 900px;
+            max-width: 920px;
             margin: 40px auto;
             padding: 0 20px;
             width: 100%;
         }
         .hero {
             text-align: center;
-            margin-bottom: 48px;
+            margin-bottom: 40px;
         }
-        .badge {
-            display: inline-block;
-            background: rgba(56, 189, 248, 0.12);
-            color: var(--accent);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            padding: 6px 14px;
-            border-radius: 100px;
-            font-size: 13px;
-            font-weight: 700;
+        .hero-logo {
+            width: 84px;
+            height: 84px;
+            border-radius: 22px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
             margin-bottom: 16px;
         }
         h1 {
-            font-size: 36px;
-            font-weight: 800;
-            color: #ffffff;
-            margin: 0 0 16px;
+            font-size: 34px;
+            font-weight: 900;
+            color: var(--text-primary);
+            margin: 0 0 12px;
+            letter-spacing: -0.5px;
         }
         p.subtitle {
             color: var(--text-secondary);
-            font-size: 17px;
+            font-size: 16.5px;
             max-width: 620px;
             margin: 0 auto;
+            font-weight: 600;
         }
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 24px;
-            margin-top: 32px;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 22px;
+            margin-top: 36px;
         }
         .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
+            background: var(--card-surface);
+            border: 1.5px solid var(--border);
+            border-radius: 22px;
             padding: 28px 24px;
             text-decoration: none;
             color: inherit;
-            transition: all 0.25s ease;
+            transition: all 0.2s ease-in-out;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.03);
         }
         .card:hover {
             transform: translateY(-4px);
-            border-color: var(--accent);
-            background: var(--card-hover);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+            border-color: var(--emerald);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.12);
         }
         .card-icon {
-            font-size: 32px;
-            margin-bottom: 16px;
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 18px;
         }
+        .card-icon.blue { background: #E0F2FE; }
+        .card-icon.purple { background: #EDE9FE; }
+        .card-icon.amber { background: #FEF3C7; }
         .card h2 {
             font-size: 20px;
-            margin: 0 0 8px;
-            color: #ffffff;
+            font-weight: 800;
+            margin: 0 0 10px;
+            color: var(--text-primary);
         }
         .card p {
             color: var(--text-secondary);
-            font-size: 14px;
+            font-size: 14.5px;
+            font-weight: 600;
             margin: 0 0 20px;
-            line-height: 1.5;
+            line-height: 1.55;
         }
         .card-link {
-            color: var(--accent);
-            font-weight: 700;
+            color: #059669;
+            font-weight: 800;
             font-size: 14px;
             display: flex;
             align-items: center;
             gap: 6px;
         }
-        .compliance-banner {
-            background: rgba(52, 211, 153, 0.08);
-            border: 1px solid rgba(52, 211, 153, 0.25);
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 48px;
-            text-align: center;
+        .banner {
+            background: var(--card-surface);
+            border: 1.5px solid var(--border);
+            border-radius: 18px;
+            padding: 24px;
+            margin-top: 44px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
         }
-        .compliance-banner strong {
-            color: var(--success);
+        .banner-icon {
+            font-size: 32px;
+        }
+        .banner-content strong {
+            color: var(--text-primary);
+            font-size: 16px;
+            font-weight: 800;
             display: block;
-            margin-bottom: 6px;
-            font-size: 15px;
+            margin-bottom: 4px;
         }
-        .compliance-banner p {
-            color: var(--text-secondary);
-            font-size: 13.5px;
+        .banner-content p {
             margin: 0;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 600;
         }
         footer {
-            border-top: 1px solid var(--border);
+            border-top: 1.5px solid var(--border);
+            background: var(--card-surface);
             padding: 24px;
             text-align: center;
-            font-size: 13px;
-            color: #64748b;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-top: 48px;
+        }
+        footer a {
+            color: #059669;
+            text-decoration: none;
+            font-weight: 700;
+        }
+        @media (max-width: 640px) {
+            .banner { flex-direction: column; text-align: center; }
+            h1 { font-size: 28px; }
         }
     </style>
 </head>
@@ -162,57 +216,63 @@
 
 <header>
     <div class="header-content">
-        <a href="index.html" class="brand">🌱 Skrollify</a>
-        <span style="font-size: 13px; color: var(--text-secondary);">Official Legal Center</span>
+        <a href="index.html" class="brand">
+            <img src="skrollify_logo.png" alt="Skrollify Logo">
+            <span>Skrollify</span>
+        </a>
+        <span class="official-tag">Official Compliance Center</span>
     </div>
 </header>
 
 <main>
     <div class="hero">
-        <div class="badge">Official Legal & Compliance Center</div>
-        <h1>Skrollify Transparency & Policies</h1>
+        <img src="skrollify_logo.png" alt="Skrollify App Icon" class="hero-logo">
+        <h1>Skrollify Legal & Privacy Portal</h1>
         <p class="subtitle">
-            Everything you need to know about our privacy architecture, terms of service, and refund commitments.
+            Welcome to the official transparency and policy center for Skrollify. Here you will find our complete privacy protections, user terms, and refund guarantees.
         </p>
     </div>
 
     <div class="grid">
         <a href="privacy-policy.html" class="card">
             <div>
-                <div class="card-icon">🔒</div>
+                <div class="card-icon blue">🔒</div>
                 <h2>Privacy Policy</h2>
-                <p>Full breakdown of on-device counting, Google Play Accessibility disclosure, GDPR, CCPA/CPRA, and data deletion rights.</p>
+                <p>Learn how your short-video counts are processed strictly on-device, our Google Play Accessibility Service protections, GDPR & CCPA rights, and data deletion tools.</p>
             </div>
-            <div class="card-link">Read Privacy Policy &rarr;</div>
+            <div class="card-link">View Privacy Policy &rarr;</div>
         </a>
 
         <a href="terms.html" class="card">
             <div>
-                <div class="card-icon">📜</div>
+                <div class="card-icon purple">📜</div>
                 <h2>Terms & Conditions</h2>
-                <p>App usage license, digital wellbeing disclaimer, Google Play Billing terms, subscription renewal, and user agreements.</p>
+                <p>Read our end-user license agreement, digital wellbeing disclaimer, Google Play subscription policies, acceptable use guidelines, and liability limits.</p>
             </div>
-            <div class="card-link">Read Terms & Conditions &rarr;</div>
+            <div class="card-link">View Terms & Conditions &rarr;</div>
         </a>
 
         <a href="refund-policy.html" class="card">
             <div>
-                <div class="card-icon">💳</div>
+                <div class="card-icon amber">💳</div>
                 <h2>Refund Policy</h2>
-                <p>Google Play 48-hour refund guidelines, developer direct resolution, subscription cancellations, and statutory rights.</p>
+                <p>Understand how Google Play 48-hour automated refunds work, how to cancel monthly or annual subscriptions, and how to reach developer direct assistance.</p>
             </div>
-            <div class="card-link">Read Refund Policy &rarr;</div>
+            <div class="card-link">View Refund Policy &rarr;</div>
         </a>
     </div>
 
-    <div class="compliance-banner">
-        <strong>Verified Global Compliance</strong>
-        <p>Built strictly according to Google Play Developer Policies, GDPR (EU), CCPA/CPRA (California), and COPPA regulations.</p>
+    <div class="banner">
+        <div class="banner-icon">🌱</div>
+        <div class="banner-content">
+            <strong>Privacy-First Habit Awareness</strong>
+            <p>Skrollify was built to help you overcome doomscrolling mindfully. We never sell personal data, never track keystrokes, and never record video or audio. Your wellbeing stays your own.</p>
+        </div>
     </div>
 </main>
 
 <footer>
-    &copy; 2026 Skrollify · Developed by Ayan Haider · <a href="mailto:ayanhaider.dev@gmail.com" style="color:var(--accent); text-decoration:none;">ayanhaider.dev@gmail.com</a>
+    &copy; 2026 Skrollify · Developed by Ayan Haider · Contact: <a href="mailto:ayanhaidershah0@gmail.com">ayanhaidershah0@gmail.com</a>
 </footer>
 
 </body>

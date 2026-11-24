@@ -4,38 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - Skrollify</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0b0f17;
-            --card-bg: #141b26;
-            --card-hover: #1b2433;
-            --text-primary: #f0f6fc;
-            --text-secondary: #94a3b8;
-            --accent: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.15);
-            --border: #233144;
-            --success: #34d399;
-            --warning: #fbbf24;
+            --bg-canvas: #FAF7F2;
+            --card-surface: #FFFFFF;
+            --card-subtle: #F7F3EB;
+            --text-primary: #1C1917;
+            --text-secondary: #57534E;
+            --border: #E8DFD1;
+            --mint-bg: #ECFDF5;
+            --mint-border: #A7F3D0;
+            --mint-text: #065F46;
+            --emerald: #10B981;
+            --emerald-dark: #059669;
+            --gold-bg: #FEF3C7;
+            --gold-border: #FDE68A;
+            --gold-text: #92400E;
         }
         * { box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             line-height: 1.7;
             color: var(--text-primary);
-            background-color: var(--bg-color);
+            background-color: var(--bg-canvas);
             margin: 0;
             padding: 0;
         }
         header {
-            background: #111722;
-            border-bottom: 1px solid var(--border);
+            background: var(--card-surface);
+            border-bottom: 1.5px solid var(--border);
             padding: 16px 24px;
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
         .header-content {
-            max-width: 900px;
+            max-width: 920px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -45,66 +53,94 @@
         }
         .brand {
             font-size: 20px;
-            font-weight: 800;
-            color: #ffffff;
+            font-weight: 900;
+            color: var(--text-primary);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+        }
+        .brand img {
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
         }
         nav {
             display: flex;
-            gap: 16px;
+            gap: 10px;
         }
         nav a {
             color: var(--text-secondary);
             text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            padding: 6px 12px;
-            border-radius: 6px;
+            font-size: 13.5px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 10px;
             transition: all 0.2s;
         }
         nav a:hover, nav a.active {
-            color: var(--accent);
-            background: var(--accent-glow);
+            color: var(--emerald-dark);
+            background: var(--mint-bg);
+            border: 1px solid var(--mint-border);
         }
         .container {
-            max-width: 900px;
+            max-width: 920px;
             margin: 32px auto;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 40px 36px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            background: var(--card-surface);
+            border: 1.5px solid var(--border);
+            border-radius: 24px;
+            padding: 44px 38px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.03);
+        }
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--mint-bg);
+            color: var(--mint-text);
+            border: 1.5px solid var(--mint-border);
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        .title-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+        .title-logo {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
         h1 {
-            color: #ffffff;
+            color: var(--text-primary);
             font-size: 32px;
-            font-weight: 800;
-            margin-top: 0;
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 16px;
+            font-weight: 900;
+            margin: 0;
+            letter-spacing: -0.5px;
         }
         h2 {
-            color: var(--accent);
+            color: var(--emerald-dark);
             font-size: 21px;
-            font-weight: 700;
+            font-weight: 800;
             margin-top: 36px;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1.5px solid var(--border);
             padding-bottom: 8px;
-        }
-        h3 {
-            color: #e2e8f0;
-            font-size: 17px;
-            margin-top: 20px;
         }
         p, li {
             color: var(--text-secondary);
             font-size: 15px;
+            font-weight: 600;
         }
         strong {
             color: var(--text-primary);
+            font-weight: 800;
         }
         ul, ol {
             padding-left: 24px;
@@ -113,28 +149,24 @@
             margin-bottom: 8px;
         }
         .highlight-box {
-            background: var(--accent-glow);
-            border-left: 4px solid var(--accent);
-            padding: 16px 20px;
+            background: var(--card-subtle);
+            border-left: 4.5px solid var(--emerald);
+            padding: 18px 22px;
             margin: 24px 0;
-            border-radius: 0 10px 10px 0;
-        }
-        .security-badge {
-            display: inline-block;
-            background: rgba(52, 211, 153, 0.12);
-            color: var(--success);
-            border: 1px solid rgba(52, 211, 153, 0.3);
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 12px;
+            border-radius: 0 14px 14px 0;
+            border-top: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
+            margin: 22px 0;
             font-size: 14px;
+            background: #FFFDF9;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
         }
         th, td {
             border: 1px solid var(--border);
@@ -142,25 +174,33 @@
             text-align: left;
         }
         th {
-            background: rgba(255,255,255,0.03);
+            background: #F4EFE6;
             color: var(--text-primary);
-            font-weight: 700;
+            font-weight: 800;
         }
         td {
             color: var(--text-secondary);
+            font-weight: 600;
         }
         .footer {
             margin-top: 48px;
-            font-size: 13px;
-            color: #64748b;
-            border-top: 1px solid var(--border);
-            padding-top: 20px;
+            font-size: 13.5px;
+            color: var(--text-secondary);
+            border-top: 1.5px solid var(--border);
+            padding-top: 24px;
             text-align: center;
+            font-weight: 600;
+        }
+        .footer a {
+            color: var(--emerald-dark);
+            text-decoration: none;
+            font-weight: 800;
         }
         @media (max-width: 640px) {
             .container { padding: 24px 18px; margin: 16px 8px; }
             h1 { font-size: 26px; }
             h2 { font-size: 19px; }
+            .title-row { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
@@ -168,29 +208,39 @@
 
 <header>
     <div class="header-content">
-        <a href="index.html" class="brand">🌱 Skrollify Legal</a>
+        <a href="index.html" class="brand">
+            <img src="skrollify_logo.png" alt="Skrollify Logo">
+            <span>Skrollify</span>
+        </a>
         <nav>
             <a href="privacy-policy.html" class="active">Privacy Policy</a>
-            <a href="terms.html">Terms & Conditions</a>
-            <a href="refund-policy.html">Refund Policy</a>
+            <a href="terms.html">Terms</a>
+            <a href="refund-policy.html">Refunds</a>
         </nav>
     </div>
 </header>
 
 <div class="container">
-    <div class="security-badge">🔒 Global Privacy Compliant · GDPR · CCPA/CPRA · COPPA</div>
-    <h1>Privacy Policy for Skrollify</h1>
-    <p><strong>Effective Date:</strong> November 24, 2026</p>
-    <p><strong>Last Updated:</strong> November 24, 2026</p>
-    <p><strong>Application:</strong> Skrollify (Package: <code>com.ayanhaider.skrollify</code>)</p>
-    <p><strong>Data Controller & Developer:</strong> Ayan Haider (Contact: <code>ayanhaider.dev@gmail.com</code>)</p>
-
-    <div class="highlight-box">
-        <strong>Our Fundamental Privacy Principle:</strong> Skrollify was created to help you conquer short-form video addiction, not to monetize your private life. We do <strong>NOT</strong> sell personal data, do <strong>NOT</strong> track keystrokes, do <strong>NOT</strong> inspect chats or passwords, and do <strong>NOT</strong> capture photos or video. Your core digital wellbeing metrics reside privately on your own device.
+    <div class="header-badge">🔒 Global Privacy Compliant · GDPR · CCPA/CPRA · COPPA</div>
+    
+    <div class="title-row">
+        <img src="skrollify_logo.png" alt="Skrollify App Icon" class="title-logo">
+        <div>
+            <h1>Privacy Policy for Skrollify</h1>
+            <p style="margin: 4px 0 0; color: var(--text-secondary); font-size: 14px; font-weight: 700;">
+                Application ID: <code>com.ayanhaider.skrollify</code> · Effective Date: November 24, 2026
+            </p>
+        </div>
     </div>
 
-    <h2>1. Introduction & Scope</h2>
-    <p>This Privacy Policy explains how Skrollify ("we", "us", or "our") collects, uses, stores, and protects your information when you download, install, or use the Skrollify mobile application on Android devices. This document complies with global data privacy frameworks, including the <strong>European Union General Data Protection Regulation (GDPR)</strong>, the <strong>California Consumer Privacy Act (CCPA) / California Privacy Rights Act (CPRA)</strong>, the <strong>Children's Online Privacy Protection Act (COPPA)</strong>, and the <strong>Google Play Developer Program Policies</strong>.</p>
+    <div class="highlight-box">
+        <strong>Our Fundamental Privacy Promise:</strong> Skrollify was created to help you conquer short-form video addiction, not to monetize your private personal data. We do <strong>NOT</strong> sell personal data, do <strong>NOT</strong> track keystrokes, do <strong>NOT</strong> inspect private messages or passwords, and do <strong>NOT</strong> record video or audio. Your digital wellbeing metrics reside privately on your own device.
+    </div>
+
+    <h2>1. Introduction & Developer Identity</h2>
+    <p>This Privacy Policy explains how Skrollify ("we", "us", or "our") collects, uses, stores, and protects your information when you download, install, or use the Skrollify mobile application on Android devices. This document complies with global data privacy frameworks including the <strong>European Union General Data Protection Regulation (GDPR)</strong>, the <strong>California Consumer Privacy Act (CCPA) / California Privacy Rights Act (CPRA)</strong>, the <strong>Children's Online Privacy Protection Act (COPPA)</strong>, and <strong>Google Play Developer Program Policies</strong>.</p>
+    <p><strong>Data Controller & Developer:</strong> Ayan Haider<br>
+    <strong>Contact Email:</strong> <a href="mailto:ayanhaidershah0@gmail.com" style="color:var(--emerald-dark); font-weight:800;">ayanhaidershah0@gmail.com</a></p>
 
     <h2>2. Mandatory Google Play Accessibility Service API Disclosure</h2>
     <p>Skrollify utilizes Android's <code>AccessibilityService</code> API under Google Play's strict policy guidelines. To ensure total transparency, please review this explicit disclosure:</p>
@@ -198,11 +248,11 @@
         <li><strong>Why Accessibility is Used:</strong> Skrollify's Accessibility Service is activated solely when you enter supported short-form video applications (Instagram Reels, YouTube Shorts, TikTok, Facebook Reels, and Snapchat Spotlight). It inspects layout structure in volatile device memory to:
             <ol>
                 <li>Accurately detect transitions to count how many short videos you watch in real time.</li>
-                <li>Display the floating counter HUD and your emotional companion avatar over the video feed so you remain mindful of time.</li>
+                <li>Display the floating counter HUD and your emotional companion avatar over the video feed so you remain mindful of your time.</li>
                 <li>Execute user-configured digital wellbeing boundaries (e.g. Smart Break reminders or Auto-Exit redirecting you back to your home screen when your daily limit is hit).</li>
             </ol>
         </li>
-        <li><strong>Strict Boundaries (What Accessibility NEVER Does):</strong>
+        <li><strong>Strict Safeguards (What Accessibility NEVER Does):</strong>
             <ul>
                 <li>❌ <strong>NO Keystroke Logging:</strong> We do NOT read, monitor, or record keystrokes, passwords, PINs, credit card numbers, or search queries.</li>
                 <li>❌ <strong>NO Chat or Message Inspection:</strong> We do NOT access private messages, direct chats, comments, emails, or personal contacts.</li>
@@ -210,7 +260,7 @@
                 <li>❌ <strong>NO Remote Transmission of Layout Data:</strong> UI layout data is evaluated strictly in-memory on your phone and is immediately discarded. It is NEVER sent over the internet.</li>
             </ul>
         </li>
-        <li><strong>Prominent Consent:</strong> In accordance with Google Play rules, this permission is optional and only requested after you review an explicit prominent disclosure in the app. You can grant, revoke, or disable the service at any time in Android Settings > Accessibility.</li>
+        <li><strong>User Consent & Control:</strong> In accordance with Google Play rules, this permission is optional and only requested after you review an explicit prominent disclosure in the app. You can grant, revoke, or disable the service at any time in Android Settings > Accessibility.</li>
     </ul>
 
     <h2>3. Information We Collect and Lawful Basis (GDPR / CCPA)</h2>
@@ -269,7 +319,7 @@
     <h2>5. Third-Party Service Providers</h2>
     <p>Skrollify relies on trusted, industry-leading infrastructure providers that adhere to ISO/IEC 27001, SOC 2, and GDPR standards:</p>
     <ul>
-        <li><strong>Google Play Services & Google Play Billing:</strong> Facilitates secure, encrypted in-app transactions and license checks. We never store credit card numbers. (<a href="https://policies.google.com/privacy" target="_blank" style="color:var(--accent);">Google Privacy Policy</a>)</li>
+        <li><strong>Google Play Services & Google Play Billing:</strong> Facilitates secure, encrypted in-app transactions and license checks. We never store credit card numbers. (<a href="https://policies.google.com/privacy" target="_blank" style="color:var(--emerald-dark); font-weight:800;">Google Privacy Policy</a>)</li>
         <li><strong>Google Cloud Firebase (Auth & Firestore):</strong> Provides optional user authentication and encrypted real-time cloud sync for friend groups.</li>
     </ul>
 
@@ -292,7 +342,7 @@
     </ul>
 
     <h2>8. Children's Privacy (COPPA Compliance)</h2>
-    <p>Skrollify is designed as a productivity and digital wellbeing utility for general audiences aged 13 and older (or 16 in the European Union). We do not knowingly solicit or collect personal information from children under 13. If you become aware that a child under 13 has provided us with personal information without parental consent, please contact us at <code>ayanhaider.dev@gmail.com</code> so we can promptly purge the data.</p>
+    <p>Skrollify is designed as a productivity and digital wellbeing utility for general audiences aged 13 and older (or 16 in the European Union). We do not knowingly solicit or collect personal information from children under 13. If you become aware that a child under 13 has provided us with personal information without parental consent, please contact us at <code>ayanhaidershah0@gmail.com</code> so we can promptly purge the data.</p>
 
     <h2>9. Data Retention & Account Deletion Policy</h2>
     <ul>
@@ -304,19 +354,16 @@
     <h2>10. Security Safeguards</h2>
     <p>We implement robust physical, administrative, and technical safeguards. All cloud network communications utilize TLS/HTTPS 256-bit encryption. Local databases are sandbox-isolated within Android's private app storage (<code>/data/data/com.ayanhaider.skrollify/</code>), inaccessible to other apps on non-rooted devices.</p>
 
-    <h2>11. Updates to this Policy</h2>
-    <p>We may update this Privacy Policy from time to time. Any material changes will be announced through an in-app notice or by updating the "Last Updated" date at the top of this policy. Continued use of Skrollify after such notice constitutes your acknowledgment of the updated terms.</p>
-
-    <h2>12. Contact Information</h2>
+    <h2>11. Contact Information</h2>
     <p>For questions, privacy inquiries, data deletion requests, or regulatory communications, contact:</p>
     <ul>
         <li><strong>Developer:</strong> Ayan Haider</li>
-        <li><strong>Email:</strong> <a href="mailto:ayanhaider.dev@gmail.com" style="color:var(--accent);">ayanhaider.dev@gmail.com</a></li>
+        <li><strong>Email:</strong> <a href="mailto:ayanhaidershah0@gmail.com" style="color:var(--emerald-dark); font-weight:800;">ayanhaidershah0@gmail.com</a></li>
         <li><strong>App:</strong> Skrollify (Digital Wellbeing & Reels Counter)</li>
     </ul>
 
     <div class="footer">
-        &copy; 2026 Skrollify · Designed for Mindful Living · All rights reserved.
+        &copy; 2026 Skrollify · Developed by Ayan Haider · <a href="mailto:ayanhaidershah0@gmail.com">ayanhaidershah0@gmail.com</a>
     </div>
 </div>
 
