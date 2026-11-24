@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refund & Cancellation Policy - Skrollify</title>
+    <style>
+        :root {
+            --bg-color: #0b0f17;
+            --card-bg: #141b26;
+            --card-hover: #1b2433;
+            --text-primary: #f0f6fc;
+            --text-secondary: #94a3b8;
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.15);
+            --border: #233144;
+            --success: #34d399;
+            --warning: #fbbf24;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #111722;
+            border-bottom: 1px solid var(--border);
+            padding: 16px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .brand {
+            font-size: 20px;
+            font-weight: 800;
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        nav {
+            display: flex;
+            gap: 16px;
+        }
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        nav a:hover, nav a.active {
+            color: var(--accent);
+            background: var(--accent-glow);
+        }
+        .container {
+            max-width: 900px;
+            margin: 32px auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px 36px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+        h1 {
+            color: #ffffff;
+            font-size: 32px;
+            font-weight: 800;
+            margin-top: 0;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 16px;
+        }
+        h2 {
+            color: var(--accent);
+            font-size: 21px;
+            font-weight: 700;
+            margin-top: 36px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding-bottom: 8px;
+        }
+        p, li {
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+        strong {
+            color: var(--text-primary);
+        }
+        ul, ol {
+            padding-left: 24px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .highlight-box {
+            background: var(--accent-glow);
+            border-left: 4px solid var(--accent);
+            padding: 16px 20px;
+            margin: 24px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        .step-box {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin: 16px 0;
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(52, 211, 153, 0.12);
+            color: var(--success);
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .footer {
+            margin-top: 48px;
+            font-size: 13px;
+            color: #64748b;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            text-align: center;
+        }
+        @media (max-width: 640px) {
+            .container { padding: 24px 18px; margin: 16px 8px; }
+            h1 { font-size: 26px; }
+            h2 { font-size: 19px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <a href="index.html" class="brand">🌱 Skrollify Legal</a>
+        <nav>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms.html">Terms & Conditions</a>
+            <a href="refund-policy.html" class="active">Refund Policy</a>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <div class="badge">💳 Transparent Refund & Cancellation Policy</div>
+    <h1>Refund & Cancellation Policy for Skrollify</h1>
+    <p><strong>Effective Date:</strong> November 24, 2026</p>
+    <p><strong>Last Updated:</strong> November 24, 2026</p>
+    <p><strong>Application:</strong> Skrollify (Package: <code>com.ayanhaider.skrollify</code>)</p>
+    <p><strong>Developer:</strong> Ayan Haider (Contact: <code>ayanhaider.dev@gmail.com</code>)</p>
+
+    <div class="highlight-box">
+        <strong>Our Customer Guarantee:</strong> We want you to be 100% satisfied with Skrollify. Because all payments and subscriptions are handled through Google Play Billing, both Google's automated refund systems and our direct developer support are available to assist you.
+    </div>
+
+    <h2>1. General Refund Terms (Google Play Billing)</h2>
+    <p>All in-app purchases, monthly subscriptions, annual subscriptions, and lifetime unlocks in Skrollify are processed through the Google Play Store. Consequently, transactions are governed by the <strong>Google Play Refund Policies</strong> and applicable local consumer protection legislation.</p>
+
+    <h2>2. Immediate Refunds within 48 Hours (Fastest Method)</h2>
+    <p>If less than 48 hours have passed since you made an in-app purchase or paid for a subscription:</p>
+    <div class="step-box">
+        <strong>How to request an instant refund through Google Play:</strong>
+        <ol>
+            <li>Open a web browser and visit: <a href="https://play.google.com/store/account/orderhistory" target="_blank" style="color:var(--accent);">Google Play Order History</a> (or open the Google Play Help Center).</li>
+            <li>Locate your Skrollify order.</li>
+            <li>Select <strong>Request a refund</strong> or <strong>Report a problem</strong>.</li>
+            <li>Choose the reason (e.g., "I purchased this by accident" or "Purchase not working as expected") and submit.</li>
+        </ol>
+        <p>Google typically processes and approves eligible requests within minutes to 24 hours.</p>
+    </div>
+
+    <h2>3. Developer Direct Refunds (After 48 Hours)</h2>
+    <p>If more than 48 hours have passed and Google Play directs you to contact the developer, we are happy to assist you directly:</p>
+    <ul>
+        <li><strong>Eligibility:</strong> If you experienced a persistent technical defect that prevented Pro features from activating, or if you were charged mistakenly due to an unexpected renewal and reach out within 14 days, we can initiate a refund directly through the Google Play Developer Console.</li>
+        <li><strong>Required Information:</strong> Send an email to <code>ayanhaider.dev@gmail.com</code> with:
+            <ul>
+                <li>Subject: <code>Refund Request - Skrollify [Order ID]</code></li>
+                <li>Your Google Play Order Number (starts with <code>GPA.xxxx-xxxx-xxxx-xxxxx</code>, found on your emailed Google receipt).</li>
+                <li>The Google account email associated with the purchase.</li>
+                <li>Brief description of the issue.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>4. Subscription Cancellation Policy</h2>
+    <p>You can cancel your recurring subscription (Monthly Support or Annual Pro) at any time. When you cancel:</p>
+    <ul>
+        <li><strong>Access Remains Active:</strong> You will continue to have full access to all Skrollify Pro features until the end of your current paid billing period.</li>
+        <li><strong>No Future Charges:</strong> You will not be billed for any subsequent cycles after cancellation.</li>
+        <li><strong>How to Cancel:</strong>
+            <ol>
+                <li>Open the <strong>Google Play Store</strong> app on your Android phone.</li>
+                <li>Tap your profile icon in the top right corner.</li>
+                <li>Tap <strong>Payments & subscriptions</strong> > <strong>Subscriptions</strong>.</li>
+                <li>Tap <strong>Skrollify</strong>.</li>
+                <li>Tap <strong>Cancel subscription</strong> and follow on-screen prompts.</li>
+            </ol>
+        </li>
+    </ul>
+
+    <h2>5. European Union (EU / UK) Statutory Right of Withdrawal</h2>
+    <p>Under the European Consumer Rights Directive (Directive 2011/83/EU) and equivalent UK legislation, consumers in the EU/EEA/UK generally have a 14-day statutory right of withdrawal for consumer contracts.</p>
+    <p>However, for digital content supplied immediately upon purchase (such as in-app unlocks and instant Pro activations), you acknowledge that by initiating digital performance upon checkout, you expressly consent to immediate access and acknowledge the forfeiture of the standard 14-day withdrawal right once digital supply begins. Nevertheless, our voluntary developer refund policy remains available as described above for technical defects or billing errors.</p>
+
+    <h2>6. Accidental Purchases by Minors</h2>
+    <p>If an unauthorized or accidental in-app purchase was made by a child on your device, you can request a refund directly through Google Play within 48 hours. To prevent future unauthorized purchases, we strongly recommend enabling <strong>Biometric / Password verification for all purchases</strong> in the Google Play Store app under Settings > Authentication > Require authentication for purchases.</p>
+
+    <h2>7. Contact Us</h2>
+    <p>If you need assistance with any purchase, billing verification, or refund request, please email us directly:</p>
+    <p><strong>Email:</strong> <a href="mailto:ayanhaider.dev@gmail.com" style="color:var(--accent);">ayanhaider.dev@gmail.com</a></p>
+    <p>We aim to respond to all billing inquiries within 24–48 business hours.</p>
+
+    <div class="footer">
+        &copy; 2026 Skrollify · All rights reserved.
+    </div>
+</div>
+
+</body>
+</html>
