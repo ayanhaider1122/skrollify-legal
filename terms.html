@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms & Conditions - Skrollify</title>
+    <meta name="description" content="Terms & Conditions for the Skrollify Android digital wellbeing application.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="skrollify_logo.png">
     <style>
         :root {
             --bg-canvas: #FAF7F2;
@@ -14,269 +16,301 @@
             --card-subtle: #F7F3EB;
             --text-primary: #1C1917;
             --text-secondary: #57534E;
+            --text-muted: #78716C;
             --border: #E8DFD1;
-            --mint-bg: #ECFDF5;
-            --mint-border: #A7F3D0;
-            --mint-text: #065F46;
             --emerald: #10B981;
-            --emerald-dark: #059669;
-            --purple-bg: #EDE9FE;
-            --purple-border: #DDD6FE;
-            --purple-text: #5B21B6;
+            --emerald-hover: #059669;
+            --emerald-dark: #065F46;
+            --emerald-soft: #ECFDF5;
+            --emerald-border: #A7F3D0;
+            --header-height: 72px;
         }
-        * { box-sizing: border-box; }
-        body {
-            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            line-height: 1.7;
-            color: var(--text-primary);
-            background-color: var(--bg-canvas);
+        html, body {
+            max-width: 100%;
+            overflow-x: clip;
             margin: 0;
             padding: 0;
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--header-height);
         }
-        header {
-            background: var(--card-surface);
-            border-bottom: 1.5px solid var(--border);
-            padding: 16px 24px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-        }
-        .header-content {
-            max-width: 920px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-        .brand {
-            font-size: 20px;
-            font-weight: 900;
+        *, *::before, *::after { box-sizing: border-box; }
+        body {
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.65;
             color: var(--text-primary);
-            text-decoration: none;
+            background-color: var(--bg-canvas);
+            min-height: 100vh;
             display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .brand img {
-            width: 34px;
-            height: 34px;
-            border-radius: 9px;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+            flex-direction: column;
         }
         nav {
+            background: rgba(250, 247, 242, 0.95);
+            backdrop-filter: blur(14px);
+            border-bottom: 1.5px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: var(--header-height);
+        }
+        .nav-container {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 20px;
+            height: 100%;
             display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
             gap: 10px;
-        }
-        nav a {
-            color: var(--text-secondary);
             text-decoration: none;
-            font-size: 13.5px;
+            color: var(--text-primary);
+            font-weight: 900;
+            font-size: 20px;
+        }
+        .brand img { width: 38px; height: 38px; border-radius: 11px; }
+        .nav-menu { display: flex; align-items: center; gap: 20px; }
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-secondary);
             font-weight: 700;
-            padding: 6px 14px;
-            border-radius: 10px;
-            transition: all 0.2s;
+            font-size: 15px;
+            transition: color 0.2s ease;
         }
-        nav a:hover, nav a.active {
-            color: var(--emerald-dark);
-            background: var(--mint-bg);
-            border: 1px solid var(--mint-border);
-        }
-        .container {
-            max-width: 920px;
-            margin: 32px auto;
-            background: var(--card-surface);
-            border: 1.5px solid var(--border);
-            border-radius: 24px;
-            padding: 44px 38px;
-            box-shadow: 0 4px 18px rgba(0,0,0,0.03);
-        }
-        .header-badge {
+        .nav-link:hover, .nav-link.active { color: var(--emerald-dark); }
+        .nav-btn {
+            background: var(--emerald);
+            color: #FFFFFF;
+            padding: 8px 18px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 14px;
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: var(--purple-bg);
-            color: var(--purple-text);
-            border: 1.5px solid var(--purple-border);
-            padding: 5px 14px;
-            border-radius: 100px;
-            font-size: 13px;
-            font-weight: 800;
-            margin-bottom: 16px;
         }
-        .title-row {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 8px;
-        }
-        .title-logo {
-            width: 56px;
-            height: 56px;
-            border-radius: 14px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        .container {
+            max-width: 900px;
+            margin: 40px auto 70px;
+            padding: 40px 32px;
+            background: var(--card-surface);
+            border: 1.5px solid var(--border);
+            border-radius: 24px;
+            box-shadow: 0 8px 24px rgba(28, 25, 23, 0.04);
+            width: 100%;
         }
         h1 {
-            color: var(--text-primary);
-            font-size: 32px;
+            font-size: clamp(26px, 5vw, 34px);
             font-weight: 900;
-            margin: 0;
+            color: var(--text-primary);
+            margin-bottom: 16px;
             letter-spacing: -0.5px;
         }
         h2 {
             color: var(--emerald-dark);
-            font-size: 21px;
+            font-size: 20px;
             font-weight: 800;
-            margin-top: 36px;
-            border-bottom: 1.5px solid var(--border);
-            padding-bottom: 8px;
+            margin-top: 32px;
+            margin-bottom: 10px;
+            border-left: 3.5px solid var(--emerald);
+            padding-left: 10px;
         }
-        p, li {
-            color: var(--text-secondary);
-            font-size: 15px;
-            font-weight: 600;
-        }
-        strong {
-            color: var(--text-primary);
-            font-weight: 800;
-        }
-        ul, ol {
-            padding-left: 24px;
-        }
-        li {
-            margin-bottom: 8px;
+        h3 { font-size: 16.5px; font-weight: 800; margin-top: 18px; margin-bottom: 6px; }
+        p, li { color: var(--text-secondary); font-size: 15px; }
+        ul, ol { margin-bottom: 16px; padding-left: 22px; }
+        li { margin-bottom: 7px; }
+        code {
+            background: var(--card-subtle);
+            border: 1px solid var(--border);
+            padding: 2px 6px;
+            border-radius: 5px;
+            font-size: 13.5px;
+            font-family: monospace;
+            color: var(--emerald-dark);
+            font-weight: 700;
+            word-break: break-word;
         }
         .highlight-box {
+            background: var(--emerald-soft);
+            border: 1.5px solid var(--emerald-border);
+            border-radius: 16px;
+            padding: 18px 20px;
+            margin: 22px 0;
+        }
+        .highlight-box h3 { color: var(--emerald-dark); margin-top: 0; }
+        .highlight-box p { color: var(--emerald-dark); margin-bottom: 0; }
+        .app-id-banner {
             background: var(--card-subtle);
-            border-left: 4.5px solid var(--emerald);
-            padding: 18px 22px;
-            margin: 24px 0;
-            border-radius: 0 14px 14px 0;
-            border-top: 1px solid var(--border);
-            border-right: 1px solid var(--border);
+            border: 1.5px solid var(--border);
+            border-radius: 14px;
+            padding: 14px 18px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 13.5px;
+            font-weight: 700;
+        }
+        .table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            max-width: 100%;
+            margin: 18px 0;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        .table-wrap table {
+            min-width: 520px;
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 13.5px;
+        }
+        .table-wrap th, .table-wrap td {
+            padding: 12px 14px;
             border-bottom: 1px solid var(--border);
         }
-        .footer {
-            margin-top: 48px;
-            font-size: 13.5px;
-            color: var(--text-secondary);
-            border-top: 1.5px solid var(--border);
-            padding-top: 24px;
-            text-align: center;
-            font-weight: 600;
-        }
-        .footer a {
-            color: var(--emerald-dark);
-            text-decoration: none;
+        .table-wrap th {
+            background: var(--card-subtle);
             font-weight: 800;
+            color: var(--text-primary);
         }
-        @media (max-width: 640px) {
-            .container { padding: 24px 18px; margin: 16px 8px; }
-            h1 { font-size: 26px; }
-            h2 { font-size: 19px; }
-            .title-row { flex-direction: column; align-items: flex-start; }
+        footer {
+            background: #111417;
+            color: #94A3B8;
+            padding: 40px 16px 32px;
+            margin-top: auto;
+        }
+        .footer-container {
+            max-width: 1140px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #FFFFFF;
+            font-weight: 900;
+            font-size: 19px;
+            text-decoration: none;
+        }
+        .footer-brand img { width: 32px; height: 32px; border-radius: 8px; }
+        .footer-links { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+        .footer-link {
+            color: #94A3B8;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13.5px;
+        }
+        .footer-link:hover { color: var(--emerald); }
+        .footer-copy {
+            font-size: 13px;
+            color: #64748B;
+            width: 100%;
+            text-align: center;
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid #1E293B;
+        }
+        @media (max-width: 860px) {
+            .nav-menu { display: none; }
+            .container { padding: 26px 18px; margin: 20px auto 40px; border-radius: 18px; }
+            .footer-container { flex-direction: column; text-align: center; justify-content: center; }
+            .footer-links { justify-content: center; }
         }
     </style>
 </head>
 <body>
-
-<header>
-    <div class="header-content">
-        <a href="index.html" class="brand">
-            <img src="skrollify_logo.png" alt="Skrollify Logo">
-            <span>Skrollify</span>
-        </a>
-        <nav>
-            <a href="privacy-policy.html">Privacy Policy</a>
-            <a href="terms.html" class="active">Terms</a>
-            <a href="refund-policy.html">Refunds</a>
-        </nav>
-    </div>
-</header>
-
-<div class="container">
-    <div class="header-badge">📜 Terms of Service & End User License Agreement</div>
-
-    <div class="title-row">
-        <img src="skrollify_logo.png" alt="Skrollify App Icon" class="title-logo">
-        <div>
-            <h1>Terms and Conditions for Skrollify</h1>
-            <p style="margin: 4px 0 0; color: var(--text-secondary); font-size: 14px; font-weight: 700;">
-                Application: <code>com.ayanhaider.skrollify</code> · Effective Date: November 24, 2026
-            </p>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html#home" class="brand">
+                <img src="skrollify_logo.png" alt="Skrollify">
+                <span>Skrollify</span>
+            </a>
+            <div class="nav-menu">
+                <a href="index.html#home" class="nav-link">Home</a>
+                <a href="index.html#showcase" class="nav-link">Showcase</a>
+                <a href="index.html#features" class="nav-link">Features</a>
+                <a href="index.html#legal" class="nav-link active">Legal</a>
+                <a href="index.html#contact" class="nav-link">Contact Us</a>
+                <a href="https://play.google.com/store/apps/details?id=com.ayanhaider.skrollify" class="nav-btn" target="_blank" rel="noopener">
+                    <span>Get App</span>
+                    <span>↗</span>
+                </a>
+            </div>
+            <a href="index.html" class="nav-btn" style="padding:6px 14px; font-size:13px;">
+                <span>← Home</span>
+            </a>
         </div>
+    </nav>
+
+    <main class="container">
+        <h1>Terms & Conditions</h1>
+        
+    <div class="app-id-banner">
+        <span>Application: <code>com.ayanhaider.skrollify</code></span>
+        <span>Effective Date: November 24, 2026</span>
     </div>
 
-    <div class="highlight-box">
-        <strong>Agreement Summary:</strong> By downloading, installing, or accessing Skrollify, you agree to be bound by these Terms and Conditions. If you do not agree, do not use the application. Skrollify is a digital wellbeing utility provided to assist with personal habit awareness.
-    </div>
+    <h2>1. Acceptance of Terms</h2>
+    <p>By downloading, installing, accessing, or using Skrollify ("Application"), developed by Ayan Haider, you agree to be bound by these Terms and Conditions ("Terms"). If you do not agree, do not install or use the Application.</p>
 
-    <h2>1. License Grant & Permitted Use</h2>
-    <p>Subject to your compliance with these Terms, we grant you a personal, non-exclusive, non-transferable, revocable, limited license to download, install, and use the Skrollify application on personal Android devices running supported operating system versions (Android 7.0 / SDK 24 or higher).</p>
-    <p>You agree NOT to:</p>
+    <h2>2. License Grant & Permitted Use</h2>
+    <p>Subject to these Terms, we grant you a limited, personal, non-exclusive, non-transferable, revocable license to download, install, and use Skrollify on Android devices that you own or control, strictly for personal, non-commercial digital wellbeing and productivity purposes.</p>
+
+    <h2>3. Accessibility Service Usage & Consent</h2>
+    <p>To count short-video scrolls and provide mindful feed intervention, the Application utilizes Android's AccessibilityService API. By granting Accessibility permission, you expressly acknowledge and consent to local evaluation of vertical scroll gestures within supported video applications. You may revoke this permission at any time in Android System Settings.</p>
+
+    <h2>4. Subscriptions, Payments & Free Trial</h2>
+    <p>Certain advanced features, themes, and companion options may require a paid subscription or one-time in-app purchase processed through Google Play:</p>
     <ul>
-        <li>Decompile, reverse-engineer, disassemble, or attempt to derive the source code of the application (except to the extent permitted by applicable open-source licenses or mandatory statutory law).</li>
-        <li>Distribute, sell, lease, sublicense, or commercially exploit the application without prior written consent.</li>
-        <li>Bypass, disable, or tamper with digital rights management, license verification, or security features of Google Play Billing.</li>
-        <li>Use the application for any unlawful purpose or in violation of third-party platform terms.</li>
+        <li><strong>Billing:</strong> Payments are billed to your Google Play account upon purchase confirmation.</li>
+        <li><strong>Automatic Renewal:</strong> Recurring subscriptions automatically renew unless canceled at least 24 hours prior to the end of the current billing cycle.</li>
+        <li><strong>Managing Subscriptions:</strong> You can manage or cancel your subscription at any time in the Google Play Store app under Payments & Subscriptions.</li>
     </ul>
 
-    <h2>2. Purpose & Digital Wellbeing Disclaimer</h2>
-    <p>Skrollify is designed solely as an educational, informational, and self-help digital wellbeing utility to assist users in building healthier relationship patterns with their smartphones and short-form video applications.</p>
-    <ul>
-        <li><strong>Not Medical Advice:</strong> Skrollify is not a clinical medical device, psychological therapy, or medical treatment for behavioral addiction disorders. If you experience severe distress or impairment, please consult a qualified healthcare or mental health professional.</li>
-        <li><strong>Self-Enforced Boundaries:</strong> Features such as "Auto-Exit", "Smart Break", and "Strict Block" rely on Android Accessibility and overlay permissions. While engineered for high reliability, operating system updates or manufacturer battery optimization software (e.g., aggressive RAM management) may occasionally interrupt background services.</li>
-    </ul>
+    <h2>5. Intellectual Property</h2>
+    <p>All rights, title, and interest in and to Skrollify, including but not limited to the living 2.5D companion artwork, mascots, user interface designs, logos, animations, code, and documentation, are the exclusive intellectual property of Ayan Haider, protected by international copyright and intellectual property laws.</p>
 
-    <h2>3. Subscriptions, In-App Purchases & Billing</h2>
-    <p>Skrollify offers both free core functionality and optional premium enhancements ("Skrollify Pro"):</p>
-    <ul>
-        <li><strong>Billing Processing:</strong> All in-app transactions, subscriptions, and lifetime unlocks are processed exclusively through the official <strong>Google Play Billing system</strong> operated by Google LLC. We do not store, process, or have access to your credit card or financial payment credentials.</li>
-        <li><strong>Subscription Tiers:</strong>
-            <ul>
-                <li><strong>Monthly Support:</strong> Auto-renewing subscription billed on a monthly cycle.</li>
-                <li><strong>Annual Pro:</strong> Auto-renewing subscription billed on a 12-month cycle.</li>
-                <li><strong>Lifetime VIP:</strong> One-time in-app purchase granting lifetime access to Pro features without recurring billing.</li>
-            </ul>
-        </li>
-        <li><strong>Automatic Renewal:</strong> Auto-renewing subscriptions automatically renew at the end of each billing cycle unless cancelled by you at least 24 hours prior to the renewal date via your Google Play account settings.</li>
-        <li><strong>Price Changes:</strong> We reserve the right to adjust subscription pricing for future billing cycles. You will always receive advance notice through Google Play before any price change takes effect.</li>
-        <li><strong>Cancellation:</strong> You may cancel your subscription at any time directly through the Google Play Store app (Tap Profile > Payments & subscriptions > Subscriptions > Skrollify > Cancel subscription). You will retain full Pro access until the conclusion of your current paid billing period.</li>
-    </ul>
+    <h2>6. Disclaimer of Warranties</h2>
+    <p>The Application is provided on an "AS IS" and "AS AVAILABLE" basis without warranties of any kind, whether express or implied. While we strive to maintain uninterrupted tracking across third-party apps, we do not warrant that third-party video apps will not update their layouts or interfere with event detection.</p>
 
-    <h2>4. Compatibility with Third-Party Social Platforms</h2>
-    <p>Skrollify inspects user-facing layout changes within third-party applications (Instagram, YouTube, TikTok, Facebook, Snapchat) locally on your device to count video transitions. These third-party companies frequently modify their applications and user interfaces. While we make continuous, good-faith efforts to update detection logic and maintain compatibility, we cannot guarantee uninterrupted or indefinite detection compatibility across all third-party versions.</p>
+    <h2>7. Limitation of Liability</h2>
+    <p>To the maximum extent permitted by applicable law, in no event shall the developer be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use or inability to use the Application.</p>
 
-    <h2>5. User Accounts & Cloud Features (Optional)</h2>
-    <p>You may use Skrollify completely anonymously offline. If you choose to create an account or sign in with Google:</p>
-    <ul>
-        <li>You are responsible for maintaining the confidentiality of your credentials.</li>
-        <li>You agree not to create offensive, abusive, hateful, or infringing group names or user display names. We reserve the right to suspend accounts or remove groups that violate community standards.</li>
-    </ul>
+    <h2>8. Governing Law & Contact</h2>
+    <p>These Terms shall be governed by and construed in accordance with applicable laws. For questions regarding these Terms, contact us at <a href="mailto:support@skrollify.com" style="color:var(--emerald-dark); font-weight:800;">support@skrollify.com</a>.</p>
 
-    <h2>6. Intellectual Property Rights</h2>
-    <p>The name "Skrollify", the Skrollify mascot/avatar artwork, logos, UI designs, code, audio, and branding are the intellectual property of Ayan Haider and are protected by applicable copyright, trademark, and intellectual property laws. Third-party names and trademarks (such as Instagram, YouTube, TikTok, Facebook, Snapchat, Android, and Google Play) are the property of their respective owners and are referenced solely for compatibility identification under nominative fair use.</p>
+    </main>
 
-    <h2>7. Warranty Disclaimer ("AS IS")</h2>
-    <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, SKROLLIFY IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS, WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE APPLICATION WILL OPERATE ERROR-FREE, SECURELY, OR WITHOUT INTERRUPTION AT ALL TIMES.</p>
-
-    <h2>8. Limitation of Liability</h2>
-    <p>TO THE MAXIMUM EXTENT PERMITTED UNDER APPLICABLE LAW (INCLUDING EU AND US JURISDICTIONS), IN NO EVENT SHALL THE DEVELOPER OR AFFILIATES BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, INCLUDING LOSS OF PROFITS, LOSS OF DATA, DEVICE DAMAGE, OR INTERRUPTIONS, ARISING OUT OF OR IN CONNECTION WITH YOUR USE OR INABILITY TO USE THE APPLICATION, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. OUR AGGREGATE LIABILITY ARISING FROM THESE TERMS SHALL NOT EXCEED THE TOTAL AMOUNT ACTUALLY PAID BY YOU FOR SKROLLIFY DURING THE TWELVE (12) MONTHS PRECEDING THE CLAIM.</p>
-
-    <h2>9. Governing Law & Dispute Resolution</h2>
-    <p>These Terms shall be governed by and construed in accordance with the laws applicable to consumer mobile software, without regard to conflict of law principles. If you are a resident of the European Union, you retain all mandatory statutory consumer protections provided by the laws of your country of habitual residence.</p>
-
-    <h2>10. Contact & Inquiries</h2>
-    <p>For questions or support regarding these Terms and Conditions, please contact:</p>
-    <p><strong>Developer:</strong> Ayan Haider<br>
-    <strong>Official Support:</strong> <a href="mailto:support@skrollify.com" style="color:var(--emerald-dark); font-weight:800;">support@skrollify.com</a></p>
-
-    <div class="footer">
-        &copy; 2026 Skrollify · Developed by Ayan Haider · <a href="mailto:support@skrollify.com">support@skrollify.com</a>
-    </div>
-</div>
-
+    <footer>
+        <div class="footer-container">
+            <a href="index.html#home" class="footer-brand">
+                <img src="skrollify_logo.png" alt="Skrollify">
+                <span>Skrollify</span>
+            </a>
+            <div class="footer-links">
+                <a href="index.html#home" class="footer-link">Home</a>
+                <a href="index.html#showcase" class="footer-link">Showcase</a>
+                <a href="index.html#features" class="footer-link">Features</a>
+                <a href="index.html#legal" class="footer-link">Legal</a>
+                <a href="index.html#contact" class="footer-link">Contact Us</a>
+                <a href="mailto:support@skrollify.com" class="footer-link">support@skrollify.com</a>
+            </div>
+            <div class="footer-copy">
+                &copy; 2026 Skrollify · Developed by Ayan Haider · All Rights Reserved.
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

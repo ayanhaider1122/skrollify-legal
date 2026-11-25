@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skrollify - Mindful Short-Video Companion for Android</title>
     <meta name="description" content="Skrollify is the mindful short-video companion for Android. Real-time reel tracking on Instagram, TikTok, YouTube Shorts, and Snapchat with 2.5D living companions, floating HUD counter, and smart feed locks.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,17 +24,43 @@
             --emerald-dark: #065F46;
             --emerald-soft: #ECFDF5;
             --emerald-border: #A7F3D0;
-            --gold-bg: #FEF3C7;
-            --gold-border: #FDE68A;
-            --gold-text: #92400E;
             --shadow-sm: 0 2px 8px rgba(28, 25, 23, 0.04);
             --shadow-md: 0 8px 24px rgba(28, 25, 23, 0.06);
             --shadow-lg: 0 16px 40px rgba(28, 25, 23, 0.08);
             --shadow-emerald: 0 10px 28px rgba(16, 185, 129, 0.22);
+            --header-height: 72px;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
+        /* Universal mobile sideways-scroll fix: clip, not hidden, to keep sticky nav working */
+        html, body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: clip;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--header-height);
+        }
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        img, video, svg, canvas {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        .section, .container {
+            width: 100%;
+            max-width: 1200px;
+            margin-inline: auto;
+            padding-inline: 16px;
+            box-sizing: border-box;
+        }
+        img, video, svg, canvas {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
 
         body {
             font-family: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -44,11 +70,10 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow-x: hidden;
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* Navigation */
+        /* Top Sticky Navigation */
         nav {
             background: rgba(250, 247, 242, 0.95);
             backdrop-filter: blur(14px);
@@ -56,12 +81,14 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            height: var(--header-height);
             box-shadow: 0 2px 14px rgba(28, 25, 23, 0.03);
         }
         .nav-container {
             max-width: 1180px;
             margin: 0 auto;
-            padding: 12px 20px;
+            padding: 0 20px;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -93,12 +120,7 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-        .nav-links {
+        .nav-menu {
             display: flex;
             align-items: center;
             gap: 20px;
@@ -107,27 +129,32 @@
             text-decoration: none;
             color: var(--text-secondary);
             font-weight: 700;
-            font-size: 14.5px;
+            font-size: 15px;
             transition: color 0.2s ease;
+            position: relative;
+            padding: 4px 0;
         }
-        .nav-link:hover {
+        .nav-link:hover, .nav-link.active {
             color: var(--emerald-dark);
         }
-        .nav-link.highlight {
-            color: var(--emerald-dark);
-            background: var(--emerald-soft);
-            padding: 5px 12px;
-            border-radius: 99px;
-            border: 1px solid var(--emerald-border);
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--emerald);
+            border-radius: 2px;
         }
         .nav-btn {
             background: var(--emerald);
             color: #FFFFFF;
-            padding: 8px 16px;
+            padding: 8px 18px;
             border-radius: 100px;
             text-decoration: none;
             font-weight: 800;
-            font-size: 13.5px;
+            font-size: 14px;
             transition: all 0.2s ease;
             box-shadow: 0 3px 10px rgba(16, 185, 129, 0.22);
             display: inline-flex;
@@ -140,10 +167,53 @@
             transform: translateY(-1px);
         }
 
-        /* Hero Section */
+        /* Mobile Hamburger Button */
+        .hamburger-btn {
+            display: none;
+            background: none;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            color: var(--text-primary);
+            font-size: 24px;
+            line-height: 1;
+            font-family: inherit;
+        }
+
+        /* Mobile Menu Drawer */
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(28, 25, 23, 0.45);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+        }
+        .mobile-menu-drawer {
+            background: var(--card-surface);
+            border-bottom: 1.5px solid var(--border);
+            padding: 20px 24px 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            box-shadow: var(--shadow-lg);
+        }
+        .mobile-menu-drawer .nav-link {
+            font-size: 17px;
+            font-weight: 800;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        /* Hero Section (#home) */
         .hero {
-            padding: 48px 20px 32px;
+            padding: 56px 20px 36px;
             text-align: center;
+            position: relative;
+            overflow: clip;
         }
         .hero-badge {
             display: inline-flex;
@@ -229,15 +299,20 @@
             color: var(--emerald-dark);
         }
 
-        /* Mobile-First Showcase Section */
+        /* Showcase Section (#showcase) */
         .showcase-section {
+            width: 100%;
             max-width: 1140px;
-            margin: 0 auto 60px;
+            margin: 0 auto 70px;
             padding: 0 16px;
+            overflow: clip;
+            box-sizing: border-box;
         }
         .showcase-header {
             text-align: center;
             margin-bottom: 24px;
+            width: 100%;
+            max-width: 100%;
         }
         .showcase-title {
             font-size: clamp(24px, 5vw, 32px);
@@ -252,14 +327,15 @@
             font-weight: 600;
         }
 
-        /* Quick-Switch Pill Navigation */
         .showcase-nav-pills {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
             flex-wrap: wrap;
+            width: 100%;
+            max-width: 100%;
         }
         .showcase-nav-pill {
             background: var(--card-surface);
@@ -280,38 +356,62 @@
             box-shadow: 0 2px 8px rgba(6, 95, 70, 0.25);
         }
 
-        /* Swipeable Track Container (Static, No continuous bobbing animations) */
+        /* Native touch carousel: horizontal scroll inside, vertical goes to page */
         .showcase-slider-wrapper {
-            position: relative;
             width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+            position: relative;
+            box-sizing: border-box;
         }
         .showcase-grid {
             display: flex;
             align-items: flex-start;
-            justify-content: center;
-            gap: 24px;
-            padding: 8px 12px 18px;
-            transition: scroll 0.3s ease;
+            justify-content: flex-start;
+            gap: 20px;
+            padding: 8px 16px 20px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            overscroll-behavior-x: contain;
+            touch-action: pan-x pan-y;
+            max-width: 100%;
+            width: 100%;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+            box-sizing: border-box;
+        }
+        @media (min-width: 960px) {
+            .showcase-grid {
+                justify-content: center;
+            }
+        }
+        .showcase-grid::-webkit-scrollbar {
+            display: none;
         }
 
-        /* Device Mockup Card (Completely Static) */
+        /* Completely static phone cards */
         .phone-card {
             position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            scroll-snap-align: center;
+            flex: 0 0 min(82vw, 280px);
+            max-width: 280px;
+            width: min(82vw, 280px);
+            transition: transform 0.2s ease;
+            box-sizing: border-box;
         }
         .phone-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-3px);
         }
 
-        /* Hardware Phone Frame (Crisp & Proportionate) */
         .phone-frame {
-            width: 275px;
-            height: 550px;
+            width: 100%;
+            height: 540px;
             background: #111417;
-            border-radius: 40px;
+            border-radius: 38px;
             padding: 9px;
             box-shadow: 
                 0 0 0 2px #2A303A,
@@ -333,7 +433,7 @@
         .screen-container {
             width: 100%;
             height: 100%;
-            border-radius: 31px;
+            border-radius: 29px;
             overflow: hidden;
             background: #000000;
             position: relative;
@@ -347,8 +447,6 @@
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
         }
-
-        /* Camera Punch Hole */
         .camera-notch {
             position: absolute;
             top: 8px;
@@ -371,7 +469,6 @@
             background: #1E293B;
             border: 1px solid #334155;
         }
-
         .phone-label {
             margin-top: 14px;
             text-align: center;
@@ -396,13 +493,12 @@
             line-height: 1.45;
         }
 
-        /* Carousel Indicators for Mobile */
         .carousel-dots {
-            display: none;
+            display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            margin-top: 12px;
+            margin-top: 14px;
         }
         .carousel-dot {
             width: 8px;
@@ -420,12 +516,11 @@
             background: var(--emerald);
         }
         .swipe-hint {
-            display: none;
             text-align: center;
             font-size: 12.5px;
             font-weight: 800;
             color: var(--emerald-dark);
-            margin-top: 10px;
+            margin-top: 8px;
             background: var(--emerald-soft);
             padding: 4px 12px;
             border-radius: 100px;
@@ -435,11 +530,12 @@
             border: 1px solid var(--emerald-border);
         }
 
-        /* Features Section */
+        /* Features Section (#features) */
         .features-section {
             max-width: 1140px;
             margin: 0 auto 70px;
             padding: 0 16px;
+            overflow: clip;
         }
         .section-header {
             text-align: center;
@@ -514,12 +610,13 @@
             line-height: 1.55;
         }
 
-        /* Legal Center & 3 Tabs Section */
+        /* Legal Center (#legal) */
         .legal-section {
             background: var(--card-subtle);
             border-top: 1.5px solid var(--border);
             border-bottom: 1.5px solid var(--border);
             padding: 60px 16px 70px;
+            overflow: clip;
         }
         .legal-container {
             max-width: 1040px;
@@ -529,8 +626,6 @@
             text-align: center;
             margin-bottom: 28px;
         }
-
-        /* 3 Legal Tabs Switcher */
         .legal-tabs-nav {
             display: flex;
             align-items: center;
@@ -565,7 +660,6 @@
             box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
         }
 
-        /* Legal Tab Content Card */
         .legal-tab-pane {
             display: none;
             background: var(--card-surface);
@@ -573,6 +667,7 @@
             border-radius: 24px;
             padding: 36px 30px;
             box-shadow: var(--shadow-md);
+            max-width: 100%;
         }
         .legal-tab-pane.active {
             display: block;
@@ -621,6 +716,9 @@
             font-size: 14.5px;
             line-height: 1.7;
             color: var(--text-primary);
+            max-width: 100%;
+            overflow-wrap: break-word;
+            word-break: break-word;
         }
         .legal-content h1, .legal-content h2 {
             color: var(--text-primary);
@@ -692,21 +790,71 @@
             font-weight: 700;
         }
 
-        /* Contact Section */
+        /* Table wrap for clean horizontal scrolling without widening page */
+        .table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            max-width: 100%;
+            margin: 16px 0;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        .table-wrap table {
+            min-width: 520px;
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 13.5px;
+        }
+        .table-wrap th, .table-wrap td {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--border);
+        }
+        .table-wrap th {
+            background: var(--card-subtle);
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+        .table-wrap tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Contact Section (#contact) */
         .contact-section {
+            width: 100%;
             max-width: 820px;
-            margin: 60px auto;
+            margin: 60px auto 70px;
             padding: 0 16px;
             text-align: center;
+            overflow: clip;
+            box-sizing: border-box;
         }
         .contact-card {
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
             background: var(--card-surface);
             border: 1.5px solid var(--border);
             border-radius: 24px;
-            padding: 38px 24px;
+            padding: 40px 24px;
             box-shadow: var(--shadow-md);
             position: relative;
             overflow: hidden;
+        }
+        @media (max-width: 480px) {
+            .contact-card {
+                padding: 28px 14px;
+            }
+            .contact-email-box {
+                font-size: 14.5px !important;
+                padding: 10px 14px !important;
+                max-width: 100%;
+                word-break: break-all;
+            }
+            .showcase-nav-pill {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
         }
         .contact-card::before {
             content: "";
@@ -722,11 +870,12 @@
             font-weight: 900;
             margin-bottom: 10px;
         }
-        .contact-card p {
+        .contact-card p.contact-desc {
             font-size: 15px;
             color: var(--text-secondary);
             max-width: 540px;
-            margin: 0 auto 22px;
+            margin: 0 auto 20px;
+            line-height: 1.6;
         }
         .contact-email-box {
             display: inline-flex;
@@ -741,17 +890,30 @@
             font-weight: 900;
             font-size: 17px;
             transition: all 0.2s ease;
+            margin-bottom: 18px;
         }
         .contact-email-box:hover {
             background: var(--emerald);
             color: #FFFFFF;
+        }
+        .contact-promise {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .contact-legal-link {
+            font-size: 13.5px;
+            color: var(--emerald-dark);
+            font-weight: 800;
+            text-decoration: underline;
         }
 
         /* Footer */
         footer {
             background: #111417;
             color: #94A3B8;
-            padding: 40px 16px 32px;
+            padding: 44px 16px 36px;
             border-top: 1px solid #1E293B;
             margin-top: auto;
         }
@@ -794,80 +956,75 @@
         .footer-link:hover {
             color: var(--emerald);
         }
+        .footer-legal-subnav {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px dashed #242E3D;
+        }
+        .footer-sub-link {
+            color: #64748B;
+            text-decoration: none;
+            font-size: 12.5px;
+            font-weight: 700;
+            transition: color 0.2s ease;
+        }
+        .footer-sub-link:hover {
+            color: #94A3B8;
+        }
         .footer-copy {
             font-size: 13px;
             color: #64748B;
             width: 100%;
             text-align: center;
-            margin-top: 24px;
-            padding-top: 20px;
+            margin-top: 20px;
+            padding-top: 18px;
             border-top: 1px solid #1E293B;
         }
 
-        /* MOBILE OPTIMIZATIONS (< 860px) */
+        /* RESPONSIVE BREAKPOINTS */
         @media (max-width: 860px) {
-            .nav-links { display: none; }
-            .hero { padding: 36px 16px 24px; }
+            .nav-menu {
+                display: none;
+            }
+            .hamburger-btn {
+                display: block;
+            }
+            .hero {
+                padding: 40px 16px 28px;
+            }
             .hero-actions .btn-primary, .hero-actions .btn-secondary {
                 width: 100%;
                 max-width: 320px;
             }
-            
-            /* Native Touch Swipeable Showcase Track */
-            .showcase-slider-wrapper {
-                padding: 0 4px;
-            }
             .showcase-grid {
                 justify-content: flex-start;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                -webkit-overflow-scrolling: touch;
-                scrollbar-width: none;
-                gap: 16px;
-                padding: 10px 16px 20px;
-            }
-            .showcase-grid::-webkit-scrollbar {
-                display: none;
+                padding: 8px 16px 18px;
             }
             .phone-card {
-                flex: 0 0 82%;
-                max-width: 295px;
-                scroll-snap-align: center;
-                scroll-snap-stop: always;
+                flex: 0 0 min(82vw, 270px);
+                max-width: 270px;
             }
             .phone-frame {
-                width: min(265px, 75vw);
-                height: min(530px, 150vw);
-                border-radius: 36px;
-                padding: 8px;
-            }
-            .screen-container {
-                border-radius: 28px;
-            }
-            .carousel-dots {
-                display: flex;
-            }
-            .swipe-hint {
-                display: block;
-            }
-
-            /* Legal Tabs on Mobile */
-            .legal-tabs-nav {
-                gap: 8px;
-            }
-            .legal-tab-btn {
-                padding: 9px 16px;
-                font-size: 13.5px;
+                height: 520px;
             }
             .legal-tab-pane {
                 padding: 24px 16px;
-                border-radius: 20px;
+                border-radius: 18px;
+            }
+            .legal-tab-btn {
+                padding: 8px 16px;
+                font-size: 13.5px;
             }
             .btn-standalone-link {
                 width: 100%;
                 justify-content: center;
             }
-
             .footer-container {
                 flex-direction: column;
                 text-align: center;
@@ -881,35 +1038,55 @@
 </head>
 <body>
 
-    <!-- Top Sticky Navigation -->
+    <!-- Sticky Navigation Bar -->
     <nav>
         <div class="nav-container">
-            <a href="#" class="brand">
+            <a href="#home" class="brand">
                 <img src="skrollify_logo.png" alt="Skrollify Logo">
                 <span>Skrollify</span>
                 <span class="brand-badge">Mindful</span>
             </a>
-            <div class="nav-right">
-                <div class="nav-links">
-                    <a href="#showcase" class="nav-link">Showcase</a>
-                    <a href="#features" class="nav-link">Features</a>
-                    <a href="#legal" class="nav-link highlight">Legals</a>
-                    <a href="#contact" class="nav-link">Contact</a>
-                </div>
-                <a href="#legal" class="nav-link highlight" style="display:inline-block; @media(min-width:861px){display:none;}">Legals</a>
+
+            <!-- Desktop Nav Menu: EXACT ORDER (Home, Showcase, Features, Legal, Contact Us) -->
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#showcase" class="nav-link">Showcase</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#legal" class="nav-link">Legal</a>
+                <a href="#contact" class="nav-link">Contact Us</a>
                 <a href="https://play.google.com/store/apps/details?id=com.ayanhaider.skrollify" class="nav-btn" target="_blank" rel="noopener">
                     <span>Get App</span>
                     <span>↗</span>
                 </a>
             </div>
+
+            <!-- Mobile Hamburger Toggle Button -->
+            <button class="hamburger-btn" id="menuToggle" aria-label="Toggle Navigation Menu">
+                <span id="menuIcon">☰</span>
+            </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Mobile Drawer Menu: EXACT ORDER (Home, Showcase, Features, Legal, Contact Us) -->
+    <div class="mobile-menu-overlay" id="mobileOverlay">
+        <div class="mobile-menu-drawer">
+            <a href="#home" class="nav-link active" onclick="closeMobileMenu()">Home</a>
+            <a href="#showcase" class="nav-link" onclick="closeMobileMenu()">Showcase</a>
+            <a href="#features" class="nav-link" onclick="closeMobileMenu()">Features</a>
+            <a href="#legal" class="nav-link" onclick="closeMobileMenu()">Legal</a>
+            <a href="#contact" class="nav-link" onclick="closeMobileMenu()">Contact Us</a>
+            <a href="https://play.google.com/store/apps/details?id=com.ayanhaider.skrollify" class="nav-btn" target="_blank" rel="noopener" style="justify-content:center; margin-top:8px;" onclick="closeMobileMenu()">
+                <span>Get Skrollify on Google Play</span>
+                <span>↗</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- 1. Home Section (#home) -->
+    <section class="hero" id="home">
         <div class="hero-badge">
             <span>🌿</span>
-            <span>Android Short-Video Digital Wellbeing</span>
+            <span>Android Digital Wellbeing & Short-Video Companion</span>
         </div>
         <h1>
             Break Doomscrolling.<br>
@@ -931,24 +1108,22 @@
         </div>
     </section>
 
-    <!-- Mobile-First Swipeable Showcase Section -->
+    <!-- 2. Showcase Section (#showcase) -->
     <section class="showcase-section" id="showcase">
         <div class="showcase-header">
             <h2 class="showcase-title">Designed for Real Mindfulness</h2>
             <p class="showcase-subtitle">Static, clean, and touch-swipeable. See Skrollify in action:</p>
         </div>
 
-        <!-- Quick Switcher Pills -->
         <div class="showcase-nav-pills">
             <button class="showcase-nav-pill active" onclick="scrollShowcaseTo(0)">1. Daily Companion</button>
             <button class="showcase-nav-pill" onclick="scrollShowcaseTo(1)">2. Live Floating HUD</button>
             <button class="showcase-nav-pill" onclick="scrollShowcaseTo(2)">3. Feed Controls</button>
         </div>
 
-        <!-- Swipeable Mobile Track (Static, Clean) -->
         <div class="showcase-slider-wrapper">
             <div class="showcase-grid" id="showcaseGrid">
-                <!-- Screen 1: Home Screen with 3D Companion -->
+                <!-- Screen 1: Home Companion -->
                 <div class="phone-card" id="card-0">
                     <div class="phone-frame">
                         <div class="camera-notch"><div class="camera-lens"></div></div>
@@ -991,8 +1166,7 @@
                 </div>
             </div>
 
-            <!-- Mobile Swipe Hint & Pagination Dots -->
-            <div class="swipe-hint" id="swipeHint">👉 Swipe to explore screens (1 of 3)</div>
+            <div class="swipe-hint" id="swipeHint">👉 Screen 1 of 3 (Daily Companion)</div>
             <div class="carousel-dots">
                 <button class="carousel-dot active" onclick="scrollShowcaseTo(0)" aria-label="Screen 1"></button>
                 <button class="carousel-dot" onclick="scrollShowcaseTo(1)" aria-label="Screen 2"></button>
@@ -1001,7 +1175,7 @@
         </div>
     </section>
 
-    <!-- App Highlights Grid -->
+    <!-- 3. Features Section (#features) -->
     <section class="features-section" id="features">
         <div class="section-header">
             <span class="section-badge">Mindful Architecture</span>
@@ -1030,13 +1204,13 @@
 
             <div class="feature-card">
                 <div class="feature-icon">🔒</div>
-                <h3>100% On-Device Privacy</h3>
-                <p>Zero keystrokes logged, zero screen captures, zero audio/video recording. Your metrics remain strictly sandboxed on your personal device.</p>
+                <h3>Your Reel Data Stays on Your Phone</h3>
+                <p>Accessibility events and scroll metrics are processed locally on your device. Accounts and squads are 100% optional — if you sign in, only daily totals sync to Firebase for squad leaderboards. Screen-color sampling for companion covers is held in temporary memory only and never saved or sent.</p>
             </div>
         </div>
     </section>
 
-    <!-- Legal & Compliance Center with 3 Tabs -->
+    <!-- 4. Legal Center (#legal) -->
     <section class="legal-section" id="legal">
         <div class="legal-container">
             <div class="legal-header">
@@ -1045,7 +1219,6 @@
                 <p class="section-desc">Complete transparency. Explore our comprehensive policies below or access standalone official pages.</p>
             </div>
 
-            <!-- 3 Tabs Selector -->
             <div class="legal-tabs-nav">
                 <button class="legal-tab-btn active" onclick="switchLegalTab('privacy', this)">
                     <span>🔒</span>
@@ -1061,168 +1234,132 @@
                 </button>
             </div>
 
-            <!-- Tab 1: Complete Privacy Policy -->
+            <!-- Tab 1: Privacy Policy -->
             <div class="legal-tab-pane active" id="pane-privacy">
                 <div class="legal-pane-topbar">
                     <div class="legal-pane-info">
                         <h2>Privacy Policy</h2>
-                        <p>Skrollify (`com.ayanhaider.skrollify`) · Effective Date: November 24, 2026</p>
+                        <p>Skrollify (<code>com.ayanhaider.skrollify</code>) · Effective Date: November 24, 2026</p>
                     </div>
-                    <a href="privacy-policy.html" class="btn-standalone-link" target="_blank">
+                    <a href="privacy.html" class="btn-standalone-link" target="_blank">
                         <span>Open Dedicated Page</span>
                         <span>↗</span>
                     </a>
                 </div>
                 <div class="legal-content">
-                    <div class="header-badge">🔒 Global Privacy Compliant · GDPR · CCPA/CPRA · COPPA</div>
-    
-    <div class="title-row">
-        <img src="skrollify_logo.png" alt="Skrollify App Icon" class="title-logo">
-        <div>
-            <h1>Privacy Policy for Skrollify</h1>
-            <p style="margin: 4px 0 0; color: var(--text-secondary); font-size: 14px; font-weight: 700;">
-                Application ID: <code>com.ayanhaider.skrollify</code> · Effective Date: November 24, 2026
-            </p>
-        </div>
+                    
+    <div class="app-id-banner">
+        <span>Application ID: <code>com.ayanhaider.skrollify</code></span>
+        <span>Effective Date: November 24, 2026</span>
     </div>
 
     <div class="highlight-box">
-        <strong>Our Fundamental Privacy Promise:</strong> Skrollify was created to help you conquer short-form video addiction, not to monetize your private personal data. We do <strong>NOT</strong> sell personal data, do <strong>NOT</strong> track keystrokes, do <strong>NOT</strong> inspect private messages or passwords, and do <strong>NOT</strong> record video or audio. Your digital wellbeing metrics reside privately on your own device.
+        <h3>Privacy at a Glance</h3>
+        <p>Skrollify is designed with a privacy-first foundation. Your short-video scroll metrics, timer thresholds, and living companion states are processed locally on your device. We do NOT record your screen, capture keystrokes, listen to audio, or sell personal data to third parties. Cloud accounts and friend squads are 100% optional.</p>
     </div>
 
-    <h2>1. Introduction & Developer Identity</h2>
-    <p>This Privacy Policy explains how Skrollify ("we", "us", or "our") collects, uses, stores, and protects your information when you download, install, or use the Skrollify mobile application on Android devices. This document complies with global data privacy frameworks including the <strong>European Union General Data Protection Regulation (GDPR)</strong>, the <strong>California Consumer Privacy Act (CCPA) / California Privacy Rights Act (CPRA)</strong>, the <strong>Children's Online Privacy Protection Act (COPPA)</strong>, and <strong>Google Play Developer Program Policies</strong>.</p>
-    <p><strong>Data Controller & Developer:</strong> Ayan Haider<br>
-    <strong>Contact Email:</strong> <a href="mailto:support@skrollify.com" style="color:var(--emerald-dark); font-weight:800;">support@skrollify.com</a></p>
+    <h2>1. Introduction</h2>
+    <p>This Privacy Policy explains how Skrollify ("we", "us", or "our"), developed by Ayan Haider, collects, uses, processes, and safeguards information when you use the Skrollify Android mobile application (the "Application" or "App") and the website located at <code>https://skrollify.com</code>.</p>
+    <p>Please read this policy carefully. If you do not agree with the terms of this Privacy Policy, please do not access or use the Application. By enabling Skrollify's digital wellbeing features, you consent to the practices described herein.</p>
 
-    <h2>2. Mandatory Google Play Accessibility Service API Disclosure</h2>
-    <p>Skrollify utilizes Android's <code>AccessibilityService</code> API under Google Play's strict policy guidelines. To ensure total transparency, please review this explicit disclosure:</p>
+    <h2>2. AccessibilityService API Disclosure (Mandatory Google Play Compliance)</h2>
+    <p>To deliver real-time mindful scroll counting and automated feed break enforcement, Skrollify requires the Android <strong>AccessibilityService API</strong> (<code>android.permission.BIND_ACCESSIBILITY_SERVICE</code>). In accordance with Google Play Developer Program Policies, we declare the following with complete transparency:</p>
     <ul>
-        <li><strong>Why Accessibility is Used:</strong> Skrollify's Accessibility Service is activated solely when you enter supported short-form video applications (Instagram Reels, YouTube Shorts, TikTok, Facebook Reels, and Snapchat Spotlight). It inspects layout structure in volatile device memory to:
-            <ol>
-                <li>Accurately detect transitions to count how many short videos you watch in real time.</li>
-                <li>Display the floating counter HUD and your emotional companion avatar over the video feed so you remain mindful of your time.</li>
-                <li>Execute user-configured digital wellbeing boundaries (e.g. Smart Break reminders or Auto-Exit redirecting you back to your home screen when your daily limit is hit).</li>
-            </ol>
-        </li>
-        <li><strong>Strict Safeguards (What Accessibility NEVER Does):</strong>
-            <ul>
-                <li>❌ <strong>NO Keystroke Logging:</strong> We do NOT read, monitor, or record keystrokes, passwords, PINs, credit card numbers, or search queries.</li>
-                <li>❌ <strong>NO Chat or Message Inspection:</strong> We do NOT access private messages, direct chats, comments, emails, or personal contacts.</li>
-                <li>❌ <strong>NO Screen Recording or Audio Capture:</strong> We do NOT record your screen, take screenshots, capture camera video, or record microphone audio.</li>
-                <li>❌ <strong>NO Remote Transmission of Layout Data:</strong> UI layout data is evaluated strictly in-memory on your phone and is immediately discarded. It is NEVER sent over the internet.</li>
-            </ul>
-        </li>
-        <li><strong>User Consent & Control:</strong> In accordance with Google Play rules, this permission is optional and only requested after you review an explicit prominent disclosure in the app. You can grant, revoke, or disable the service at any time in Android Settings > Accessibility.</li>
+        <li><strong>Specific Purpose:</strong> The AccessibilityService is utilized exclusively to detect vertical scroll gestures, window transitions, and short-video container state changes within designated target applications (Instagram Reels, YouTube Shorts, TikTok, Snapchat Spotlight, and Facebook Reels).</li>
+        <li><strong>Strictly Local Event Evaluation:</strong> All accessibility event processing (evaluating view resource IDs, scroll positions, and window content changes) occurs entirely on your physical device in volatile system memory.</li>
+        <li><strong>NO Surveillance or Media Capture:</strong> Skrollify does NOT record, stream, capture, or transmit screenshots, video feeds, camera images, or microphone audio.</li>
+        <li><strong>NO Keystroke or Input Interception:</strong> The service does NOT observe, monitor, or record personal typing, passwords, messages, credit card numbers, or interactive input fields.</li>
+        <li><strong>NO Remote Accessibility Data Exfiltration:</strong> Accessibility event metadata is never transmitted to our servers or third-party analytical platforms. It is processed in real time and immediately discarded after incrementing your local counter.</li>
+        <li><strong>User-Controlled Permission:</strong> The Accessibility permission is entirely voluntary and must be explicitly enabled by you through Android System Settings. You can revoke it at any time.</li>
     </ul>
 
     <h2>3. Information We Collect and Lawful Basis (GDPR / CCPA)</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Category of Data</th>
+                    <th>Data Elements</th>
+                    <th>Primary Purpose</th>
+                    <th>Storage Location & Lawful Basis</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Short-Video & Screen Time Metrics</strong></td>
+                    <td>Daily reel count, vertical swipe tallies, smart break intervals, active app package name.</td>
+                    <td>Provide mindful usage tracking, animate 2.5D companion emotions, and enforce user limits.</td>
+                    <td>100% Local Device Sandbox (Room Database). Lawful basis: Performance of contract.</td>
+                </tr>
+                <tr>
+                    <td><strong>Screen-Color Sampling (Tab Cover Tint)</strong></td>
+                    <td>Single-pixel dominant color sample read in volatile memory during active reels.</td>
+                    <td>Dynamically adapt the floating companion HUD color palette to match dark vs light video feeds.</td>
+                    <td>Volatile In-Memory Only. Never saved to disk, never transmitted. Lawful basis: Legitimate interest.</td>
+                </tr>
+                <tr>
+                    <td><strong>Optional Account & Squad Data</strong></td>
+                    <td>Display name, chosen avatar ID, daily aggregate scroll count (only if signed in).</td>
+                    <td>Enable optional cloud streak backup and cooperative friend squad leaderboards.</td>
+                    <td>Google Cloud Firebase Firestore (encrypted TLS/AES-256). Lawful basis: User Consent.</td>
+                </tr>
+                <tr>
+                    <td><strong>Purchases & Subscriptions</strong></td>
+                    <td>Google Play Order ID, product SKU, purchase token, subscription status.</td>
+                    <td>Unlock Pro customisation, advanced companion slots, and support app development.</td>
+                    <td>Google Play Billing Library / Local verification cache. Lawful basis: Contract fulfillment.</td>
+                </tr>
+                <tr>
+                    <td><strong>Anonymized Diagnostics</strong></td>
+                    <td>Android OS version, device model, anonymized crash stack traces.</td>
+                    <td>Identify and fix bugs, resolve ANRs, and optimize rendering performance.</td>
+                    <td>Google Play Console crash reports. Lawful basis: Legitimate interest.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Category of Data</th>
-                <th>Data Elements</th>
-                <th>Primary Purpose</th>
-                <th>Storage Location & Lawful Basis</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><strong>Short-Video & Screen Time Metrics</strong></td>
-                <td>Daily reel counts, session timestamps, foreground app usage duration (via Android UsageStatsManager).</td>
-                <td>To display your daily & weekly scroll reports, peak habit graphs, and companion mood status.</td>
-                <td><strong>100% On-Device (SQLite Database)</strong>.<br>GDPR Art. 6(1)(b) Performance of Contract.</td>
-            </tr>
-            <tr>
-                <td><strong>Account Information (Optional)</strong></td>
-                <td>Email address, display name, chosen avatar customization, unique user ID (UID).</td>
-                <td>Cloud backup, multi-device synchronization, and friend group leaderboards.</td>
-                <td><strong>Google Cloud Firestore</strong> (Encrypted).<br>GDPR Art. 6(1)(a) Explicit User Consent.</td>
-            </tr>
-            <tr>
-                <td><strong>Group & Social Data (Optional)</strong></td>
-                <td>Group name, member display names, daily reel scores shared within the group.</td>
-                <td>To power friend groups and accountability leaderboards.</td>
-                <td><strong>Google Cloud Firestore</strong>.<br>GDPR Art. 6(1)(a) Consent.</td>
-            </tr>
-            <tr>
-                <td><strong>Purchase & Entitlement Data</strong></td>
-                <td>Google Play Purchase Token, product ID (e.g. <code>skrollify_starter_monthly</code>, <code>skrollify_lifetime_vip</code>).</td>
-                <td>To verify and unlock Skrollify Pro features and restore purchases across devices.</td>
-                <td><strong>Google Play Billing / SharedPreferences</strong>.<br>GDPR Art. 6(1)(b) Contract.</td>
-            </tr>
-            <tr>
-                <td><strong>Crash Diagnostics</strong></td>
-                <td>Anonymous device model, OS version, and stack traces on unhandled exceptions.</td>
-                <td>To resolve crashes and ensure app stability.</td>
-                <td>Firebase Crashlytics (de-identified).<br>GDPR Art. 6(1)(f) Legitimate Interests.</td>
-            </tr>
-        </tbody>
-    </table>
+    <h2>4. Volatile Screen-Color Sampling for Tab Cover</h2>
+    <p>To provide a seamless visual integration when the floating companion HUD is active over short-video players, the App may read a single pixel color sample from the active feed container. This color sample is strictly processed in temporary device RAM to adjust the HUD's border tone (light vs dark mode). It is <strong>never written to persistent storage</strong>, never converted to an image, and <strong>never transmitted off your device</strong>.</p>
 
-    <h2>4. Android Permissions Required & Justification</h2>
+    <h2>5. Optional Firebase Cloud Account & Friend Squads</h2>
+    <p>Creating an account in Skrollify is completely optional. You can enjoy all core tracking, companion animations, and blocking features anonymously without registering.</p>
+    <p>If you choose to create an account (via Google Sign-In or Anonymous Auth):</p>
     <ul>
-        <li><code>PACKAGE_USAGE_STATS</code>: Required to read foreground screen time durations through Android's official UsageStats API for monitored social apps and screen-time-only apps (WhatsApp, Reddit, LinkedIn).</li>
-        <li><code>SYSTEM_ALERT_WINDOW</code> ("Display over other apps"): Allows Skrollify to draw the lightweight floating counter HUD and companion avatar over active short-video feeds. The overlay auto-dismisses immediately when you leave monitored apps.</li>
-        <li><code>POST_NOTIFICATIONS</code>: (Android 13+) Used only to deliver daily milestone recaps, limit warnings, or friend group leaderboard alerts. You can silence notifications anytime.</li>
-        <li><code>REQUEST_IGNORE_BATTERY_OPTIMIZATIONS</code>: Optional; requested so vendor battery managers (Samsung One UI, Xiaomi MIUI) do not kill the floating counter while you are actively tracking reels.</li>
+        <li>We store only your chosen display name, avatar configuration ID, and daily total scroll counts in Google Cloud Firebase Firestore.</li>
+        <li>We do NOT store your contacts, browsing history, or detailed timestamps of specific videos watched.</li>
+        <li>You can delete your account and all associated cloud data at any time directly in the app or via our <a href="delete-account.html" style="color:var(--emerald-dark); font-weight:800;">Account Deletion Page</a>.</li>
     </ul>
 
-    <h2>5. Third-Party Service Providers</h2>
-    <p>Skrollify relies on trusted, industry-leading infrastructure providers that adhere to ISO/IEC 27001, SOC 2, and GDPR standards:</p>
+    <h2>6. In-App Purchases & Google Play Billing</h2>
+    <p>All financial transactions, subscriptions, and one-time purchases are processed through Google Play In-App Billing APIs. Skrollify does NOT collect, process, or store credit card numbers, bank accounts, or billing addresses. Payment processing is governed by Google Play's Terms of Service and Privacy Policy.</p>
+
+    <h2>7. Data Retention and Account Deletion</h2>
+    <p>We believe you should have complete control over your data:</p>
     <ul>
-        <li><strong>Google Play Services & Google Play Billing:</strong> Facilitates secure, encrypted in-app transactions and license checks. We never store credit card numbers. (<a href="https://policies.google.com/privacy" target="_blank" style="color:var(--emerald-dark); font-weight:800;">Google Privacy Policy</a>)</li>
-        <li><strong>Google Cloud Firebase (Auth & Firestore):</strong> Provides optional user authentication and encrypted real-time cloud sync for friend groups.</li>
+        <li><strong>Local Data:</strong> All local scroll logs and settings are permanently erased when you clear app data in Android Settings or uninstall the Application.</li>
+        <li><strong>Cloud Account Deletion:</strong> You can delete your Firebase account and squad records instantly inside the app by going to Profile > Settings > Delete Account, or by submitting a deletion request at <a href="delete-account.html" style="color:var(--emerald-dark); font-weight:800;">https://skrollify.com/delete-account</a>. All cloud records are permanently purged within 48 business hours.</li>
     </ul>
 
-    <h2>6. European Privacy Rights (GDPR / UK GDPR)</h2>
-    <p>If you are a resident of the European Economic Area (EEA), United Kingdom, or Switzerland, you have the following rights under GDPR:</p>
-    <ul>
-        <li><strong>Right of Access (Art. 15):</strong> You can request a copy of the personal data associated with your cloud account.</li>
-        <li><strong>Right to Rectification (Art. 16):</strong> You can update your display name, email, or avatar anytime in App Settings.</li>
-        <li><strong>Right to Erasure / Right to be Forgotten (Art. 17):</strong> You can permanently delete your account and all associated Firestore data directly in App Settings > Account > Delete Account, or by emailing us.</li>
-        <li><strong>Right to Data Portability (Art. 20):</strong> You can export your local usage logs and SQLite data via the in-app export feature.</li>
-        <li><strong>Right to Withdraw Consent (Art. 7):</strong> You can sign out, disable Accessibility, or turn off group sync at any time without penalty.</li>
-    </ul>
+    <h2>8. Children's Privacy (COPPA & GDPR-K Compliance)</h2>
+    <p>Skrollify is designed as a productivity utility for general audiences aged 13 and older (or 16 in the European Union). We do not knowingly collect personal information from children under 13. If you believe a child under 13 has provided personal information without parental consent, please contact us immediately at <code>support@skrollify.com</code> so we can promptly delete the data.</p>
 
-    <h2>7. California Privacy Rights (CCPA / CPRA)</h2>
-    <p>Under the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA):</p>
-    <ul>
-        <li><strong>No Sale or Sharing of Personal Data:</strong> Skrollify has <strong>never sold</strong> and will <strong>never sell</strong> your personal information to third parties or data brokers. We do not share data for cross-context behavioral advertising.</li>
-        <li><strong>Right to Know & Delete:</strong> California residents have the right to request disclosure of categories of personal data collected and request complete deletion.</li>
-        <li><strong>Non-Discrimination:</strong> We will never discriminate against you (deny services, charge different prices, or degrade quality) for exercising your privacy rights.</li>
-    </ul>
+    <h2>9. Contact Us</h2>
+    <p>If you have any questions, concerns, or requests regarding this Privacy Policy or your personal data, please contact:</p>
+    <p><strong>Developer:</strong> Ayan Haider<br>
+    <strong>Official Support Email:</strong> <a href="mailto:support@skrollify.com" style="color:var(--emerald-dark); font-weight:800;">support@skrollify.com</a><br>
+    <strong>Website:</strong> <a href="https://skrollify.com" style="color:var(--emerald-dark); font-weight:800;">https://skrollify.com</a></p>
+    <p>We aim to respond to all privacy and compliance inquiries within 24–48 business hours.</p>
 
-    <h2>8. Children's Privacy (COPPA Compliance)</h2>
-    <p>Skrollify is designed as a productivity and digital wellbeing utility for general audiences aged 13 and older (or 16 in the European Union). We do not knowingly solicit or collect personal information from children under 13. If you become aware that a child under 13 has provided us with personal information without parental consent, please contact us at <code>support@skrollify.com</code> so we can promptly purge the data.</p>
-
-    <h2>9. Data Retention & Account Deletion Policy</h2>
-    <ul>
-        <li><strong>Local Data:</strong> Stored on your device until you clear app data, uninstall Skrollify, or tap "Reset Data" in settings.</li>
-        <li><strong>Cloud Data:</strong> Retained in Firebase Firestore as long as your account remains active.</li>
-        <li><strong>Immediate Deletion:</strong> When you tap "Delete Account" in settings or send an email request, all associated cloud records (user profile, group memberships, and leaderboard scores) are permanently erased within 48 hours.</li>
-    </ul>
-
-    <h2>10. Security Safeguards</h2>
-    <p>We implement robust physical, administrative, and technical safeguards. All cloud network communications utilize TLS/HTTPS 256-bit encryption. Local databases are sandbox-isolated within Android's private app storage (<code>/data/data/com.ayanhaider.skrollify/</code>), inaccessible to other apps on non-rooted devices.</p>
-
-    <h2>11. Contact Information</h2>
-    <p>For questions, privacy inquiries, data deletion requests, or regulatory communications, contact:</p>
-    <ul>
-        <li><strong>Developer:</strong> Ayan Haider</li>
-        <li><strong>Support Email:</strong> <a href="mailto:support@skrollify.com" style="color:var(--emerald-dark); font-weight:800;">support@skrollify.com</a></li>
-        <li><strong>App:</strong> Skrollify (Digital Wellbeing & Reels Counter)</li>
-    </ul>
                 </div>
             </div>
 
-            <!-- Tab 2: Complete Terms & Conditions -->
+            <!-- Tab 2: Terms & Conditions -->
             <div class="legal-tab-pane" id="pane-terms">
                 <div class="legal-pane-topbar">
                     <div class="legal-pane-info">
                         <h2>Terms & Conditions</h2>
-                        <p>Skrollify (`com.ayanhaider.skrollify`) · Effective Date: November 24, 2026</p>
+                        <p>Skrollify (<code>com.ayanhaider.skrollify</code>) · Effective Date: November 24, 2026</p>
                     </div>
                     <a href="terms.html" class="btn-standalone-link" target="_blank">
                         <span>Open Dedicated Page</span>
@@ -1230,187 +1367,116 @@
                     </a>
                 </div>
                 <div class="legal-content">
-                    <div class="header-badge">📜 Terms of Service & End User License Agreement</div>
-
-    <div class="title-row">
-        <img src="skrollify_logo.png" alt="Skrollify App Icon" class="title-logo">
-        <div>
-            <h1>Terms and Conditions for Skrollify</h1>
-            <p style="margin: 4px 0 0; color: var(--text-secondary); font-size: 14px; font-weight: 700;">
-                Application: <code>com.ayanhaider.skrollify</code> · Effective Date: November 24, 2026
-            </p>
-        </div>
+                    
+    <div class="app-id-banner">
+        <span>Application: <code>com.ayanhaider.skrollify</code></span>
+        <span>Effective Date: November 24, 2026</span>
     </div>
 
-    <div class="highlight-box">
-        <strong>Agreement Summary:</strong> By downloading, installing, or accessing Skrollify, you agree to be bound by these Terms and Conditions. If you do not agree, do not use the application. Skrollify is a digital wellbeing utility provided to assist with personal habit awareness.
-    </div>
+    <h2>1. Acceptance of Terms</h2>
+    <p>By downloading, installing, accessing, or using Skrollify ("Application"), developed by Ayan Haider, you agree to be bound by these Terms and Conditions ("Terms"). If you do not agree, do not install or use the Application.</p>
 
-    <h2>1. License Grant & Permitted Use</h2>
-    <p>Subject to your compliance with these Terms, we grant you a personal, non-exclusive, non-transferable, revocable, limited license to download, install, and use the Skrollify application on personal Android devices running supported operating system versions (Android 7.0 / SDK 24 or higher).</p>
-    <p>You agree NOT to:</p>
+    <h2>2. License Grant & Permitted Use</h2>
+    <p>Subject to these Terms, we grant you a limited, personal, non-exclusive, non-transferable, revocable license to download, install, and use Skrollify on Android devices that you own or control, strictly for personal, non-commercial digital wellbeing and productivity purposes.</p>
+
+    <h2>3. Accessibility Service Usage & Consent</h2>
+    <p>To count short-video scrolls and provide mindful feed intervention, the Application utilizes Android's AccessibilityService API. By granting Accessibility permission, you expressly acknowledge and consent to local evaluation of vertical scroll gestures within supported video applications. You may revoke this permission at any time in Android System Settings.</p>
+
+    <h2>4. Subscriptions, Payments & Free Trial</h2>
+    <p>Certain advanced features, themes, and companion options may require a paid subscription or one-time in-app purchase processed through Google Play:</p>
     <ul>
-        <li>Decompile, reverse-engineer, disassemble, or attempt to derive the source code of the application (except to the extent permitted by applicable open-source licenses or mandatory statutory law).</li>
-        <li>Distribute, sell, lease, sublicense, or commercially exploit the application without prior written consent.</li>
-        <li>Bypass, disable, or tamper with digital rights management, license verification, or security features of Google Play Billing.</li>
-        <li>Use the application for any unlawful purpose or in violation of third-party platform terms.</li>
+        <li><strong>Billing:</strong> Payments are billed to your Google Play account upon purchase confirmation.</li>
+        <li><strong>Automatic Renewal:</strong> Recurring subscriptions automatically renew unless canceled at least 24 hours prior to the end of the current billing cycle.</li>
+        <li><strong>Managing Subscriptions:</strong> You can manage or cancel your subscription at any time in the Google Play Store app under Payments & Subscriptions.</li>
     </ul>
 
-    <h2>2. Purpose & Digital Wellbeing Disclaimer</h2>
-    <p>Skrollify is designed solely as an educational, informational, and self-help digital wellbeing utility to assist users in building healthier relationship patterns with their smartphones and short-form video applications.</p>
-    <ul>
-        <li><strong>Not Medical Advice:</strong> Skrollify is not a clinical medical device, psychological therapy, or medical treatment for behavioral addiction disorders. If you experience severe distress or impairment, please consult a qualified healthcare or mental health professional.</li>
-        <li><strong>Self-Enforced Boundaries:</strong> Features such as "Auto-Exit", "Smart Break", and "Strict Block" rely on Android Accessibility and overlay permissions. While engineered for high reliability, operating system updates or manufacturer battery optimization software (e.g., aggressive RAM management) may occasionally interrupt background services.</li>
-    </ul>
+    <h2>5. Intellectual Property</h2>
+    <p>All rights, title, and interest in and to Skrollify, including but not limited to the living 2.5D companion artwork, mascots, user interface designs, logos, animations, code, and documentation, are the exclusive intellectual property of Ayan Haider, protected by international copyright and intellectual property laws.</p>
 
-    <h2>3. Subscriptions, In-App Purchases & Billing</h2>
-    <p>Skrollify offers both free core functionality and optional premium enhancements ("Skrollify Pro"):</p>
-    <ul>
-        <li><strong>Billing Processing:</strong> All in-app transactions, subscriptions, and lifetime unlocks are processed exclusively through the official <strong>Google Play Billing system</strong> operated by Google LLC. We do not store, process, or have access to your credit card or financial payment credentials.</li>
-        <li><strong>Subscription Tiers:</strong>
-            <ul>
-                <li><strong>Monthly Support:</strong> Auto-renewing subscription billed on a monthly cycle.</li>
-                <li><strong>Annual Pro:</strong> Auto-renewing subscription billed on a 12-month cycle.</li>
-                <li><strong>Lifetime VIP:</strong> One-time in-app purchase granting lifetime access to Pro features without recurring billing.</li>
-            </ul>
-        </li>
-        <li><strong>Automatic Renewal:</strong> Auto-renewing subscriptions automatically renew at the end of each billing cycle unless cancelled by you at least 24 hours prior to the renewal date via your Google Play account settings.</li>
-        <li><strong>Price Changes:</strong> We reserve the right to adjust subscription pricing for future billing cycles. You will always receive advance notice through Google Play before any price change takes effect.</li>
-        <li><strong>Cancellation:</strong> You may cancel your subscription at any time directly through the Google Play Store app (Tap Profile > Payments & subscriptions > Subscriptions > Skrollify > Cancel subscription). You will retain full Pro access until the conclusion of your current paid billing period.</li>
-    </ul>
+    <h2>6. Disclaimer of Warranties</h2>
+    <p>The Application is provided on an "AS IS" and "AS AVAILABLE" basis without warranties of any kind, whether express or implied. While we strive to maintain uninterrupted tracking across third-party apps, we do not warrant that third-party video apps will not update their layouts or interfere with event detection.</p>
 
-    <h2>4. Compatibility with Third-Party Social Platforms</h2>
-    <p>Skrollify inspects user-facing layout changes within third-party applications (Instagram, YouTube, TikTok, Facebook, Snapchat) locally on your device to count video transitions. These third-party companies frequently modify their applications and user interfaces. While we make continuous, good-faith efforts to update detection logic and maintain compatibility, we cannot guarantee uninterrupted or indefinite detection compatibility across all third-party versions.</p>
+    <h2>7. Limitation of Liability</h2>
+    <p>To the maximum extent permitted by applicable law, in no event shall the developer be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use or inability to use the Application.</p>
 
-    <h2>5. User Accounts & Cloud Features (Optional)</h2>
-    <p>You may use Skrollify completely anonymously offline. If you choose to create an account or sign in with Google:</p>
-    <ul>
-        <li>You are responsible for maintaining the confidentiality of your credentials.</li>
-        <li>You agree not to create offensive, abusive, hateful, or infringing group names or user display names. We reserve the right to suspend accounts or remove groups that violate community standards.</li>
-    </ul>
+    <h2>8. Governing Law & Contact</h2>
+    <p>These Terms shall be governed by and construed in accordance with applicable laws. For questions regarding these Terms, contact us at <a href="mailto:support@skrollify.com" style="color:var(--emerald-dark); font-weight:800;">support@skrollify.com</a>.</p>
 
-    <h2>6. Intellectual Property Rights</h2>
-    <p>The name "Skrollify", the Skrollify mascot/avatar artwork, logos, UI designs, code, audio, and branding are the intellectual property of Ayan Haider and are protected by applicable copyright, trademark, and intellectual property laws. Third-party names and trademarks (such as Instagram, YouTube, TikTok, Facebook, Snapchat, Android, and Google Play) are the property of their respective owners and are referenced solely for compatibility identification under nominative fair use.</p>
-
-    <h2>7. Warranty Disclaimer ("AS IS")</h2>
-    <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, SKROLLIFY IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS, WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE APPLICATION WILL OPERATE ERROR-FREE, SECURELY, OR WITHOUT INTERRUPTION AT ALL TIMES.</p>
-
-    <h2>8. Limitation of Liability</h2>
-    <p>TO THE MAXIMUM EXTENT PERMITTED UNDER APPLICABLE LAW (INCLUDING EU AND US JURISDICTIONS), IN NO EVENT SHALL THE DEVELOPER OR AFFILIATES BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, INCLUDING LOSS OF PROFITS, LOSS OF DATA, DEVICE DAMAGE, OR INTERRUPTIONS, ARISING OUT OF OR IN CONNECTION WITH YOUR USE OR INABILITY TO USE THE APPLICATION, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. OUR AGGREGATE LIABILITY ARISING FROM THESE TERMS SHALL NOT EXCEED THE TOTAL AMOUNT ACTUALLY PAID BY YOU FOR SKROLLIFY DURING THE TWELVE (12) MONTHS PRECEDING THE CLAIM.</p>
-
-    <h2>9. Governing Law & Dispute Resolution</h2>
-    <p>These Terms shall be governed by and construed in accordance with the laws applicable to consumer mobile software, without regard to conflict of law principles. If you are a resident of the European Union, you retain all mandatory statutory consumer protections provided by the laws of your country of habitual residence.</p>
-
-    <h2>10. Contact & Inquiries</h2>
-    <p>For questions or support regarding these Terms and Conditions, please contact:</p>
-    <p><strong>Developer:</strong> Ayan Haider<br>
-    <strong>Official Support:</strong> <a href="mailto:support@skrollify.com" style="color:var(--emerald-dark); font-weight:800;">support@skrollify.com</a></p>
                 </div>
             </div>
 
-            <!-- Tab 3: Complete Refund Policy -->
+            <!-- Tab 3: Refund Policy -->
             <div class="legal-tab-pane" id="pane-refund">
                 <div class="legal-pane-topbar">
                     <div class="legal-pane-info">
                         <h2>Refund Policy</h2>
-                        <p>Skrollify (`com.ayanhaider.skrollify`) · Effective Date: November 24, 2026</p>
+                        <p>Skrollify (<code>com.ayanhaider.skrollify</code>) · Effective Date: November 24, 2026</p>
                     </div>
-                    <a href="refund-policy.html" class="btn-standalone-link" target="_blank">
+                    <a href="refund.html" class="btn-standalone-link" target="_blank">
                         <span>Open Dedicated Page</span>
                         <span>↗</span>
                     </a>
                 </div>
                 <div class="legal-content">
-                    <div class="header-badge">💳 Fair & Transparent Refund Policy</div>
-
-    <div class="title-row">
-        <img src="skrollify_logo.png" alt="Skrollify App Icon" class="title-logo">
-        <div>
-            <h1>Refund & Cancellation Policy</h1>
-            <p style="margin: 4px 0 0; color: var(--text-secondary); font-size: 14px; font-weight: 700;">
-                Application: <code>com.ayanhaider.skrollify</code> · Effective Date: November 24, 2026
-            </p>
-        </div>
+                    
+    <div class="app-id-banner">
+        <span>Application: <code>com.ayanhaider.skrollify</code></span>
+        <span>Effective Date: November 24, 2026</span>
     </div>
 
-    <div class="highlight-box">
-        <strong>Our Customer Guarantee:</strong> We want you to be 100% satisfied with Skrollify. Because all payments and subscriptions are handled through Google Play Billing, both Google's automated refund systems and our direct developer support are available to assist you.
-    </div>
+    <h2>1. Overview</h2>
+    <p>Thank you for supporting Skrollify. We are committed to complete transparency regarding in-app purchases and subscriptions. Because all purchases are processed through Google Play, refund requests are primarily handled via Google Play's standardized billing systems.</p>
 
-    <h2>1. General Refund Terms (Google Play Billing)</h2>
-    <p>All in-app purchases, monthly subscriptions, annual subscriptions, and lifetime unlocks in Skrollify are processed through the Google Play Store. Consequently, transactions are governed by the <strong>Google Play Refund Policies</strong> and applicable local consumer protection legislation.</p>
+    <h2>2. Google Play 48-Hour Automated Refund Window</h2>
+    <p>If less than 48 hours have passed since your purchase or renewal, you can request a direct, automated refund directly through Google Play:</p>
+    <ol>
+        <li>Go to <a href="https://play.google.com/store/account/orderhistory" target="_blank" rel="noopener" style="color:var(--emerald-dark); font-weight:800;">Google Play Order History</a> on your browser or open the Google Play Store app.</li>
+        <li>Find the Skrollify order you wish to refund.</li>
+        <li>Select <strong>Request a refund</strong> or <strong>Report a problem</strong>.</li>
+        <li>Complete the short form and indicate your reason. Google typically renders a decision within 15 minutes to 4 business days.</li>
+    </ol>
 
-    <h2>2. Immediate Refunds within 48 Hours (Fastest Method)</h2>
-    <p>If less than 48 hours have passed since you made an in-app purchase or paid for a subscription:</p>
-    <div class="step-box">
-        <strong>How to request an instant automated refund through Google Play:</strong>
-        <ol>
-            <li>Open a web browser and visit: <a href="https://play.google.com/store/account/orderhistory" target="_blank" style="color:var(--emerald-dark); font-weight:800;">Google Play Order History</a> (or the Google Play Help Center).</li>
-            <li>Locate your Skrollify order.</li>
-            <li>Select <strong>Request a refund</strong> or <strong>Report a problem</strong>.</li>
-            <li>Choose the reason (e.g., "I purchased this by accident" or "Purchase not working as expected") and submit.</li>
-        </ol>
-        <p>Google typically processes and approves eligible requests within minutes to 24 hours.</p>
-    </div>
-
-    <h2>3. Developer Direct Refunds (After 48 Hours)</h2>
-    <p>If more than 48 hours have passed and Google Play directs you to contact the developer, we are happy to assist you directly:</p>
+    <h2>3. 14-Day Developer Refund Guarantee</h2>
+    <p>If Google's 48-hour automated window has elapsed, we offer a voluntary <strong>14-day direct developer refund guarantee</strong> for persistent technical defects, duplicate charges, or accidental billing renewals:</p>
     <ul>
-        <li><strong>Eligibility:</strong> If you experienced a persistent technical defect that prevented Pro features from activating, or if you were charged mistakenly due to an unexpected renewal and reach out within 14 days, we can initiate a refund directly through the Google Play Developer Console.</li>
-        <li><strong>Required Information:</strong> Send an email to <code>support@skrollify.com</code> with:
-            <ul>
-                <li>Subject: <code>Refund Request - Skrollify [Order ID]</code></li>
-                <li>Your Google Play Order Number (starts with <code>GPA.xxxx-xxxx-xxxx-xxxxx</code>, found on your emailed Google receipt).</li>
-                <li>The Google account email associated with the purchase.</li>
-                <li>Brief description of the issue.</li>
-            </ul>
-        </li>
+        <li>Send an email to <code>support@skrollify.com</code> with the subject <code>Refund Request - Skrollify [Order ID]</code>.</li>
+        <li>Include your Google Play GPA order number (starts with <code>GPA.xxxx-xxxx-xxxx-xxxxx</code>, found on your emailed Google Play receipt).</li>
+        <li>We will verify and issue the refund directly through the Google Play Developer Console within 24–48 business hours.</li>
     </ul>
 
-    <h2>4. Subscription Cancellation Policy</h2>
-    <p>You can cancel your recurring subscription (Monthly Support or Annual Pro) at any time. When you cancel:</p>
-    <ul>
-        <li><strong>Access Remains Active:</strong> You will continue to have full access to all Skrollify Pro features until the end of your current paid billing period.</li>
-        <li><strong>No Future Charges:</strong> You will not be billed for any subsequent cycles after cancellation.</li>
-        <li><strong>How to Cancel:</strong>
-            <ol>
-                <li>Open the <strong>Google Play Store</strong> app on your Android phone.</li>
-                <li>Tap your profile icon in the top right corner.</li>
-                <li>Tap <strong>Payments & subscriptions</strong> > <strong>Subscriptions</strong>.</li>
-                <li>Tap <strong>Skrollify</strong>.</li>
-                <li>Tap <strong>Cancel subscription</strong> and follow on-screen prompts.</li>
-            </ol>
-        </li>
-    </ul>
+    <h2>4. How to Cancel Subscriptions</h2>
+    <p>Canceling a recurring subscription prevents all future billing while keeping your Pro access active through the end of the paid billing period:</p>
+    <ol>
+        <li>Open the <strong>Google Play Store</strong> app on your Android device.</li>
+        <li>Tap your profile icon in the top right corner > <strong>Payments & subscriptions</strong> > <strong>Subscriptions</strong>.</li>
+        <li>Select <strong>Skrollify</strong> and tap <strong>Cancel subscription</strong>.</li>
+    </ol>
 
-    <h2>5. European Union (EU / UK) Statutory Right of Withdrawal</h2>
-    <p>Under the European Consumer Rights Directive (Directive 2011/83/EU) and equivalent UK legislation, consumers in the EU/EEA/UK generally have a 14-day statutory right of withdrawal for consumer contracts.</p>
-    <p>However, for digital content supplied immediately upon purchase (such as in-app unlocks and instant Pro activations), you acknowledge that by initiating digital performance upon checkout, you expressly consent to immediate access and acknowledge the forfeiture of the standard 14-day withdrawal right once digital supply begins. Nevertheless, our voluntary developer refund policy remains available as described above for technical defects or billing errors.</p>
+    <h2>5. Contact Us</h2>
+    <p>For any billing inquiries, order verifications, or refund questions, email us at <a href="mailto:support@skrollify.com" style="color:var(--emerald-dark); font-weight:800;">support@skrollify.com</a>.</p>
 
-    <h2>6. Accidental Purchases by Minors</h2>
-    <p>If an unauthorized or accidental in-app purchase was made by a child on your device, you can request a refund directly through Google Play within 48 hours. To prevent future unauthorized purchases, we strongly recommend enabling <strong>Biometric / Password verification for all purchases</strong> in the Google Play Store app under Settings > Authentication > Require authentication for purchases.</p>
-
-    <h2>7. Contact Us</h2>
-    <p>If you need assistance with any purchase, billing verification, or refund request, please email us directly:</p>
-    <p><strong>Developer:</strong> Ayan Haider<br>
-    <strong>Official Support:</strong> <a href="mailto:support@skrollify.com" style="color:var(--emerald-dark); font-weight:800;">support@skrollify.com</a></p>
-    <p>We aim to respond to all billing inquiries within 24–48 business hours.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- 5. Real Contact Us Section (#contact) -->
     <section class="contact-section" id="contact">
         <div class="contact-card">
-            <h2>Need Support or Have Questions?</h2>
-            <p>We are dedicated to building a mindful, transparent tool that respects your focus and personal privacy. For technical assistance, bug reports, or legal inquiries:</p>
+            <h2>Contact Us</h2>
+            <p class="contact-desc">
+                We are dedicated to building a mindful, transparent tool that respects your focus and personal privacy. 
+                Whether you need technical support, have feature suggestions, or need assistance with billing or account deletion:
+            </p>
             <a href="mailto:support@skrollify.com" class="contact-email-box">
                 <span>✉️</span>
                 <span>support@skrollify.com</span>
             </a>
-            <p style="margin-top: 16px; font-size: 13.5px; color: var(--text-muted); font-weight: 700;">
-                Developer: Ayan Haider · Expected response time within 24–48 business hours.
+            <p class="contact-promise">
+                We respond to all inquiries within 24–48 business hours.
+            </p>
+            <p style="margin-top: 10px;">
+                Have compliance, privacy, or refund questions? Review our full policies in the <a href="#legal" class="contact-legal-link">Legal Section</a>.
             </p>
         </div>
     </section>
@@ -1418,27 +1484,61 @@
     <!-- Footer -->
     <footer>
         <div class="footer-container">
-            <a href="#" class="footer-brand">
+            <a href="#home" class="footer-brand">
                 <img src="skrollify_logo.png" alt="Skrollify">
                 <span>Skrollify</span>
             </a>
+
+            <!-- Footer Nav in EXACT ORDER: Home, Showcase, Features, Legal, Contact Us -->
             <div class="footer-links">
+                <a href="#home" class="footer-link">Home</a>
                 <a href="#showcase" class="footer-link">Showcase</a>
                 <a href="#features" class="footer-link">Features</a>
-                <a href="#legal" class="footer-link" onclick="switchLegalTab('privacy')">Privacy Policy</a>
-                <a href="#legal" class="footer-link" onclick="switchLegalTab('terms')">Terms</a>
-                <a href="#legal" class="footer-link" onclick="switchLegalTab('refund')">Refund Policy</a>
-                <a href="mailto:support@skrollify.com" class="footer-link">support@skrollify.com</a>
+                <a href="#legal" class="footer-link">Legal</a>
+                <a href="#contact" class="footer-link">Contact Us</a>
             </div>
+
+            <!-- Standalone Legal Pages -->
+            <div class="footer-legal-subnav">
+                <a href="privacy.html" class="footer-sub-link">Privacy Policy</a>
+                <a href="terms.html" class="footer-sub-link">Terms & Conditions</a>
+                <a href="refund.html" class="footer-sub-link">Refund Policy</a>
+                <a href="delete-account.html" class="footer-sub-link">Delete Account</a>
+                <a href="mailto:support@skrollify.com" class="footer-sub-link">support@skrollify.com</a>
+            </div>
+
             <div class="footer-copy">
                 &copy; 2026 Skrollify · Developed by Ayan Haider · All Rights Reserved.
             </div>
         </div>
     </footer>
 
-    <!-- Interactive Scripts for Swipeable Showcase and Tab Switching -->
+    <!-- Interactive Scripts: Tab Switcher, Carousel Touch Sync, Mobile Menu, Active Nav Observer -->
     <script>
-        // Showcase Carousel Swiping Logic
+        // 1. Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const menuIcon = document.getElementById('menuIcon');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+
+        function toggleMobileMenu() {
+            const isOpen = mobileOverlay.style.display === 'block';
+            mobileOverlay.style.display = isOpen ? 'none' : 'block';
+            menuIcon.textContent = isOpen ? '☰' : '✕';
+            document.body.style.overflow = isOpen ? '' : 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileOverlay.style.display = 'none';
+            menuIcon.textContent = '☰';
+            document.body.style.overflow = '';
+        }
+
+        menuToggle.addEventListener('click', toggleMobileMenu);
+        mobileOverlay.addEventListener('click', (e) => {
+            if (e.target === mobileOverlay) closeMobileMenu();
+        });
+
+        // 2. Showcase Carousel Touch Swiping
         const grid = document.getElementById('showcaseGrid');
         const cards = [document.getElementById('card-0'), document.getElementById('card-1'), document.getElementById('card-2')];
         const dots = document.querySelectorAll('.carousel-dot');
@@ -1461,7 +1561,6 @@
             }
         }
 
-        // Listen for user finger swipes on mobile
         let scrollTimeout;
         grid.addEventListener('scroll', () => {
             clearTimeout(scrollTimeout);
@@ -1473,7 +1572,7 @@
             }, 50);
         }, { passive: true });
 
-        // Legal Tabs Logic
+        // 3. Legal Tab Switching
         function switchLegalTab(tabId, clickedBtn) {
             const panes = document.querySelectorAll('.legal-tab-pane');
             panes.forEach(pane => pane.classList.remove('active'));
@@ -1482,9 +1581,7 @@
             btns.forEach(btn => btn.classList.remove('active'));
 
             const targetPane = document.getElementById('pane-' + tabId);
-            if (targetPane) {
-                targetPane.classList.add('active');
-            }
+            if (targetPane) targetPane.classList.add('active');
 
             if (clickedBtn) {
                 clickedBtn.classList.add('active');
@@ -1494,17 +1591,41 @@
             }
         }
 
-        // Listen for direct URL hash (#privacy, #terms, #refund)
+        // Listen for direct URL hashes
         window.addEventListener('DOMContentLoaded', () => {
             const hash = window.location.hash.toLowerCase();
-            if (hash.includes('terms')) {
-                switchLegalTab('terms');
-            } else if (hash.includes('refund')) {
-                switchLegalTab('refund');
-            } else if (hash.includes('privacy') || hash.includes('legal')) {
-                switchLegalTab('privacy');
-            }
+            if (hash.includes('terms')) switchLegalTab('terms');
+            else if (hash.includes('refund')) switchLegalTab('refund');
+            else if (hash.includes('privacy') || hash.includes('legal')) switchLegalTab('privacy');
         });
+
+        // 4. Active Nav IntersectionObserver (Highlights current active section)
+        const sections = document.querySelectorAll('section[id]');
+        const desktopNavLinks = document.querySelectorAll('.nav-menu .nav-link');
+        const mobileNavLinks = document.querySelectorAll('.mobile-menu-drawer .nav-link');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -70% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    const updateLinks = (links) => {
+                        links.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+                        });
+                    };
+                    updateLinks(desktopNavLinks);
+                    updateLinks(mobileNavLinks);
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(sec => observer.observe(sec));
     </script>
 </body>
 </html>
