@@ -19,15 +19,15 @@ For Android apps published on the **Google Play Store**, you **must use Google P
 
 ---
 
-## 2. The 3 Skrollify Pricing Categories & Regional Purchasing Power Parity (PPP)
+## 2. Universal Global Pricing (Same Worldwide)
 
-The app is configured in code (`PlayBillingManager.kt` & `ProPaywallDialog.kt`) to query and handle these 3 tiers, with automatic regional pricing:
+Skrollify uses unified pricing across all countries worldwide:
 
-| Tier | Category | Product ID | Type | Top-Tier (US/UK/EU/CA/AU) | Middle-Income (BR/MX/TR/CO) | Emerging (PK/IN/BD/EG/NG) |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Tier 1** | **Monthly Support** | `skrollify_starter_monthly` | **Subscription** | **$4.99 / mo** | **$2.99 / mo** | **$0.99 / mo** (Rs. 280 PKR / ₹89 INR / 110 BDT) |
-| **Tier 2** | **Annual Pro (POPULAR)** | `skrollify_pro_annual` | **Subscription** | **$39.99 / yr** *(Save 33% vs $59.99)* | **$24.99 / yr** *(Save 30% vs $35.99)* | **$8.99 / yr** *(Save 25% vs $12.00 / Rs. 2,499 PKR / ₹799 INR)* |
-| **Tier 3** | **Lifetime VIP (Best Value)** | `skrollify_lifetime_vip` | **In-App (One-Time)** | **$49.99 once** | **$34.99 once** | **$14.99 once** (Rs. 4,199 PKR / ₹1,299 INR / 1,650 BDT) |
+| Tier | Category | Product ID | Type | Universal Global Price | Savings / Value |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Tier 1** | **Monthly Support** | `skrollify_starter_monthly` | **Subscription** | **$2.99 / month** | Flexible monthly access |
+| **Tier 2** | **Annual Pro (POPULAR)** | `skrollify_pro_annual` | **Subscription** | **$25.99 / year** | **Save 28%** (compared to $35.88 / yr) |
+| **Tier 3** | **Lifetime VIP (Best Value)** | `skrollify_lifetime_vip` | **In-App (One-Time)** | **$49.99 once** | Pay once, keep Pro forever |
 
 ---
 
@@ -43,13 +43,8 @@ Once you create your app in Google Play Console:
    - **Name:** `Skrollify Lifetime VIP`
    - **Description:** `Lifetime access to all Pro features, custom 2.5D avatar looks, and unlimited reports.`
 4. Under **Price**, click **Set price**:
-   - Set Default price to **USD 49.99** (for Top Tier / US).
-   - Google Play will automatically calculate local country prices.
-   - Click **Edit country / region prices** to customize PPP for emerging & middle markets:
-     - **Pakistan:** Set to `4199 PKR`
-     - **India:** Set to `1299 INR`
-     - **Bangladesh:** Set to `1650 BDT`
-     - **Brazil / Mexico / Turkey:** Set to ~$34.99 equivalent
+   - Set Default price to **USD 49.99**.
+   - Google Play will automatically convert to all local currencies at standard exchange rates.
 5. Click **Apply**, then **Save**, and click **Activate**.
 
 ---
@@ -67,12 +62,7 @@ Once you create your app in Google Play Console:
    - **Billing period:** **Monthly**
    - **Grace period:** 7 days
 5. Under **Set prices**:
-   - Set Default price to **USD 4.99** (US).
-   - Click **Set prices per country / region**:
-     - **Pakistan:** Set to `280 PKR` (~$0.99)
-     - **India:** Set to `89 INR` (~$0.99)
-     - **Bangladesh:** Set to `110 BDT` (~$0.99)
-     - **Brazil / Mexico / Turkey:** Set to ~$2.99 equivalent
+   - Set Default price to **USD 2.99**.
 6. Click **Save** > **Activate base plan** > **Activate subscription**.
 
 ---
@@ -81,19 +71,14 @@ Once you create your app in Google Play Console:
 1. In **Subscriptions**, click **Create subscription**:
    - **Subscription ID:** `skrollify_pro_annual`
    - **Name:** `Skrollify Annual Pro`
-   - **Description:** `1 full year of all Pro features at a significant discount compared to monthly.`
+   - **Description:** `1 full year of all Pro features at a 28% discount compared to monthly.`
 2. Click **Add base plan**:
    - **Base plan ID:** `annual-pro-plan`
    - **Type:** **Auto-renewing**
    - **Billing period:** **Yearly**
    - **Grace period:** 14 days
 3. Under **Set prices**:
-   - Set Default price to **USD 39.99** (Save 33% vs monthly in US).
-   - Custom country prices:
-     - **Pakistan:** Set to `2499 PKR` (~$8.99 / yr, Save 25%)
-     - **India:** Set to `799 INR` (~$8.99 / yr, Save 25%)
-     - **Bangladesh:** Set to `990 BDT` (~$8.99 / yr, Save 25%)
-     - **Brazil / Mexico / Turkey:** Set to ~$24.99 equivalent (Save 30%)
+   - Set Default price to **USD 25.99** (Save 28% vs $35.88).
 4. Click **Save** > **Activate base plan** > **Activate subscription**.
 
 ---
