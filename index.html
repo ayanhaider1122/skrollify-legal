@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Skrollify - Mindful Short-Video Companion for Android</title>
     <meta name="description" content="Skrollify is the mindful short-video companion for Android. Real-time reel tracking on Instagram, TikTok, YouTube Shorts, and Snapchat with 2.5D living companions, floating HUD counter, and smart feed locks.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,14 +27,10 @@
             --gold-bg: #FEF3C7;
             --gold-border: #FDE68A;
             --gold-text: #92400E;
-            --purple-bg: #F5F3FF;
-            --purple-text: #6D28D9;
-            --sky-bg: #F0F9FF;
-            --sky-text: #0369A1;
             --shadow-sm: 0 2px 8px rgba(28, 25, 23, 0.04);
             --shadow-md: 0 8px 24px rgba(28, 25, 23, 0.06);
             --shadow-lg: 0 16px 40px rgba(28, 25, 23, 0.08);
-            --shadow-emerald: 0 12px 32px rgba(16, 185, 129, 0.20);
+            --shadow-emerald: 0 10px 28px rgba(16, 185, 129, 0.22);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -49,11 +45,12 @@
             display: flex;
             flex-direction: column;
             overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
         }
 
         /* Navigation */
         nav {
-            background: rgba(250, 247, 242, 0.94);
+            background: rgba(250, 247, 242, 0.95);
             backdrop-filter: blur(14px);
             border-bottom: 1.5px solid var(--border);
             position: sticky;
@@ -62,9 +59,9 @@
             box-shadow: 0 2px 14px rgba(28, 25, 23, 0.03);
         }
         .nav-container {
-            max-width: 1200px;
+            max-width: 1180px;
             margin: 0 auto;
-            padding: 14px 24px;
+            padding: 12px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -72,41 +69,45 @@
         .brand {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             text-decoration: none;
             color: var(--text-primary);
             font-weight: 900;
-            font-size: 22px;
+            font-size: 20px;
             letter-spacing: -0.3px;
         }
         .brand img {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+            width: 38px;
+            height: 38px;
+            border-radius: 11px;
+            box-shadow: 0 3px 10px rgba(16, 185, 129, 0.2);
         }
         .brand-badge {
-            font-size: 10.5px;
+            font-size: 10px;
             font-weight: 800;
             background: var(--emerald-soft);
             color: var(--emerald-dark);
             border: 1px solid var(--emerald-border);
-            padding: 2px 8px;
+            padding: 2px 7px;
             border-radius: 100px;
-            margin-left: 4px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
         }
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 24px;
+            gap: 20px;
         }
         .nav-link {
             text-decoration: none;
             color: var(--text-secondary);
             font-weight: 700;
-            font-size: 15px;
+            font-size: 14.5px;
             transition: color 0.2s ease;
         }
         .nav-link:hover {
@@ -115,57 +116,56 @@
         .nav-link.highlight {
             color: var(--emerald-dark);
             background: var(--emerald-soft);
-            padding: 6px 14px;
+            padding: 5px 12px;
             border-radius: 99px;
             border: 1px solid var(--emerald-border);
         }
         .nav-btn {
             background: var(--emerald);
             color: #FFFFFF;
-            padding: 9px 18px;
+            padding: 8px 16px;
             border-radius: 100px;
             text-decoration: none;
             font-weight: 800;
-            font-size: 14px;
+            font-size: 13.5px;
             transition: all 0.2s ease;
-            box-shadow: 0 3px 10px rgba(16, 185, 129, 0.25);
+            box-shadow: 0 3px 10px rgba(16, 185, 129, 0.22);
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
+            white-space: nowrap;
         }
         .nav-btn:hover {
             background: var(--emerald-hover);
             transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
         }
 
         /* Hero Section */
         .hero {
-            padding: 60px 24px 40px;
+            padding: 48px 20px 32px;
             text-align: center;
-            position: relative;
         }
         .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 7px;
             background: var(--emerald-soft);
             color: var(--emerald-dark);
             border: 1.5px solid var(--emerald-border);
-            padding: 6px 16px;
+            padding: 5px 14px;
             border-radius: 100px;
-            font-size: 13.5px;
+            font-size: 13px;
             font-weight: 800;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
         .hero h1 {
-            font-size: 52px;
+            font-size: clamp(30px, 6.5vw, 50px);
             font-weight: 900;
-            line-height: 1.15;
-            letter-spacing: -1.2px;
+            line-height: 1.18;
+            letter-spacing: -0.8px;
             color: var(--text-primary);
-            max-width: 820px;
-            margin: 0 auto 20px;
+            max-width: 800px;
+            margin: 0 auto 16px;
         }
         .hero h1 span.gradient {
             background: linear-gradient(135deg, var(--emerald-dark) 0%, var(--emerald) 100%);
@@ -173,190 +173,170 @@
             -webkit-text-fill-color: transparent;
         }
         .hero p.lead {
-            font-size: 19px;
+            font-size: clamp(15px, 3.8vw, 18px);
             color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto 36px;
+            max-width: 660px;
+            margin: 0 auto 28px;
             font-weight: 600;
-            line-height: 1.6;
+            line-height: 1.55;
         }
         .hero-actions {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 16px;
+            gap: 12px;
             flex-wrap: wrap;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
         .btn-primary {
             background: var(--emerald);
             color: #FFFFFF;
-            padding: 14px 28px;
+            padding: 13px 26px;
             border-radius: 100px;
             text-decoration: none;
             font-weight: 800;
-            font-size: 16px;
+            font-size: 15.5px;
             box-shadow: var(--shadow-emerald);
-            transition: all 0.25s ease;
+            transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            gap: 8px;
+            min-height: 48px;
         }
         .btn-primary:hover {
             background: var(--emerald-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 16px 36px rgba(16, 185, 129, 0.35);
+            transform: translateY(-1px);
         }
         .btn-secondary {
             background: var(--card-surface);
             color: var(--text-primary);
             border: 1.5px solid var(--border);
-            padding: 14px 26px;
+            padding: 13px 22px;
             border-radius: 100px;
             text-decoration: none;
             font-weight: 800;
-            font-size: 16px;
+            font-size: 15.5px;
             transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
+            min-height: 48px;
         }
         .btn-secondary:hover {
             border-color: var(--emerald);
             color: var(--emerald-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-sm);
         }
 
-        /* 3D Mobile Showcase */
+        /* Mobile-First Showcase Section */
         .showcase-section {
-            max-width: 1240px;
-            margin: 0 auto 80px;
-            padding: 0 24px;
-            perspective: 1200px;
+            max-width: 1140px;
+            margin: 0 auto 60px;
+            padding: 0 16px;
         }
         .showcase-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 24px;
         }
         .showcase-title {
-            font-size: 32px;
+            font-size: clamp(24px, 5vw, 32px);
             font-weight: 900;
             color: var(--text-primary);
-            letter-spacing: -0.6px;
-            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
         }
         .showcase-subtitle {
-            font-size: 16px;
+            font-size: 15px;
             color: var(--text-secondary);
             font-weight: 600;
         }
-        .showcase-grid {
+
+        /* Quick-Switch Pill Navigation */
+        .showcase-nav-pills {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 36px;
+            gap: 8px;
+            margin-bottom: 18px;
             flex-wrap: wrap;
-            padding: 20px 0;
+        }
+        .showcase-nav-pill {
+            background: var(--card-surface);
+            color: var(--text-secondary);
+            border: 1.5px solid var(--border);
+            padding: 7px 16px;
+            border-radius: 100px;
+            font-size: 13.5px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+        .showcase-nav-pill.active {
+            background: var(--emerald-dark);
+            color: #FFFFFF;
+            border-color: var(--emerald-dark);
+            box-shadow: 0 2px 8px rgba(6, 95, 70, 0.25);
         }
 
-        /* Device Mockup Card */
+        /* Swipeable Track Container (Static, No continuous bobbing animations) */
+        .showcase-slider-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        .showcase-grid {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 24px;
+            padding: 8px 12px 18px;
+            transition: scroll 0.3s ease;
+        }
+
+        /* Device Mockup Card (Completely Static) */
         .phone-card {
             position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
-            will-change: transform;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
-        .phone-card.left {
-            animation: floatLeftPhone 6.2s ease-in-out infinite alternate;
-        }
-        .phone-card.center {
-            z-index: 10;
-            animation: floatCenterPhone 5.2s ease-in-out infinite alternate;
-        }
-        .phone-card.right {
-            animation: floatRightPhone 5.8s ease-in-out infinite alternate;
-        }
-
         .phone-card:hover {
-            animation-play-state: paused;
-            transform: translateY(-16px) scale(1.025) !important;
+            transform: translateY(-4px);
         }
 
-        /* Keyframe Bobbing Animations */
-        @keyframes floatCenterPhone {
-            0% {
-                transform: translateY(0px) scale(1.03);
-            }
-            50% {
-                transform: translateY(-14px) scale(1.045);
-            }
-            100% {
-                transform: translateY(-4px) scale(1.03);
-            }
-        }
-
-        @keyframes floatLeftPhone {
-            0% {
-                transform: translateY(0px) rotate(-1.5deg);
-            }
-            50% {
-                transform: translateY(-10px) rotate(-2.5deg);
-            }
-            100% {
-                transform: translateY(6px) rotate(-1deg);
-            }
-        }
-
-        @keyframes floatRightPhone {
-            0% {
-                transform: translateY(0px) rotate(1.5deg);
-            }
-            50% {
-                transform: translateY(-11px) rotate(2.5deg);
-            }
-            100% {
-                transform: translateY(5px) rotate(1deg);
-            }
-        }
-
-        /* Hardware Phone Frame */
+        /* Hardware Phone Frame (Crisp & Proportionate) */
         .phone-frame {
-            width: 290px;
-            height: 590px;
+            width: 275px;
+            height: 550px;
             background: #111417;
-            border-radius: 44px;
-            padding: 10px;
+            border-radius: 40px;
+            padding: 9px;
             box-shadow: 
                 0 0 0 2px #2A303A,
                 0 0 0 4px #0F1216,
-                0 22px 50px rgba(16, 24, 40, 0.16),
-                0 8px 18px rgba(16, 24, 40, 0.08);
+                0 16px 36px rgba(16, 24, 40, 0.12),
+                0 4px 12px rgba(16, 24, 40, 0.06);
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
         }
-        .phone-card.center .phone-frame {
-            width: 310px;
-            height: 630px;
+        .phone-card.hero-card .phone-frame {
             box-shadow: 
                 0 0 0 2.5px #10B981,
-                0 0 0 5px #065F46,
-                0 28px 70px rgba(16, 185, 129, 0.24),
-                0 10px 24px rgba(28, 25, 23, 0.12);
+                0 0 0 4.5px #065F46,
+                0 20px 48px rgba(16, 185, 129, 0.20),
+                0 6px 16px rgba(28, 25, 23, 0.08);
         }
         .screen-container {
             width: 100%;
             height: 100%;
-            border-radius: 34px;
+            border-radius: 31px;
             overflow: hidden;
-            background: #FAF7F2;
+            background: #000000;
             position: relative;
-            display: flex;
-            flex-direction: column;
         }
         .screen-img {
             width: 100%;
@@ -364,77 +344,36 @@
             object-fit: cover;
             object-position: top center;
             display: block;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
         }
 
-        /* Realistic Camera Island */
+        /* Camera Punch Hole */
         .camera-notch {
             position: absolute;
-            top: 10px;
+            top: 8px;
             left: 50%;
             transform: translateX(-50%);
-            width: 74px;
-            height: 18px;
+            width: 68px;
+            height: 16px;
             background: #000000;
             border-radius: 20px;
             z-index: 30;
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            padding-right: 12px;
+            padding-right: 10px;
         }
         .camera-lens {
-            width: 7px;
-            height: 7px;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
             background: #1E293B;
             border: 1px solid #334155;
         }
 
-        /* Floating Interactive HUD Pill on Center Mockup */
-        .floating-hud-overlay {
-            position: absolute;
-            top: 140px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(18, 24, 32, 0.88);
-            backdrop-filter: blur(16px);
-            border: 1.5px solid rgba(16, 185, 129, 0.6);
-            color: #FFFFFF;
-            padding: 10px 18px;
-            border-radius: 100px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            z-index: 25;
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4), 0 0 20px rgba(16, 185, 129, 0.35);
-            animation: pulseHud 3s ease-in-out infinite alternate;
-        }
-        @keyframes pulseHud {
-            0% {
-                transform: translateX(-50%) translateY(0px) scale(1);
-                box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4), 0 0 14px rgba(16, 185, 129, 0.25);
-            }
-            100% {
-                transform: translateX(-50%) translateY(-4px) scale(1.03);
-                box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 26px rgba(16, 185, 129, 0.5);
-            }
-        }
-        .hud-emoji {
-            font-size: 20px;
-            line-height: 1;
-        }
-        .hud-text {
-            font-size: 13.5px;
-            font-weight: 800;
-            letter-spacing: -0.2px;
-        }
-        .hud-count {
-            color: #34D399;
-            font-weight: 900;
-        }
-
         .phone-label {
-            margin-top: 18px;
+            margin-top: 14px;
             text-align: center;
         }
         .phone-label-tag {
@@ -442,100 +381,137 @@
             background: var(--card-surface);
             color: var(--emerald-dark);
             border: 1px solid var(--border);
-            padding: 4px 14px;
+            padding: 4px 12px;
             border-radius: 100px;
-            font-size: 12.5px;
+            font-size: 12px;
             font-weight: 800;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             box-shadow: var(--shadow-sm);
         }
         .phone-label-desc {
-            font-size: 13.5px;
+            font-size: 13px;
             color: var(--text-secondary);
             font-weight: 700;
-            max-width: 260px;
+            max-width: 250px;
+            line-height: 1.45;
         }
 
-        /* App Highlights Grid */
+        /* Carousel Indicators for Mobile */
+        .carousel-dots {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #D6D3D1;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .carousel-dot.active {
+            width: 24px;
+            border-radius: 100px;
+            background: var(--emerald);
+        }
+        .swipe-hint {
+            display: none;
+            text-align: center;
+            font-size: 12.5px;
+            font-weight: 800;
+            color: var(--emerald-dark);
+            margin-top: 10px;
+            background: var(--emerald-soft);
+            padding: 4px 12px;
+            border-radius: 100px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid var(--emerald-border);
+        }
+
+        /* Features Section */
         .features-section {
-            max-width: 1160px;
-            margin: 0 auto 90px;
-            padding: 0 24px;
+            max-width: 1140px;
+            margin: 0 auto 70px;
+            padding: 0 16px;
         }
         .section-header {
             text-align: center;
-            margin-bottom: 48px;
+            margin-bottom: 36px;
         }
         .section-badge {
             display: inline-block;
             background: var(--emerald-soft);
             color: var(--emerald-dark);
             border: 1px solid var(--emerald-border);
-            padding: 4px 14px;
+            padding: 3px 12px;
             border-radius: 100px;
-            font-size: 12px;
+            font-size: 11.5px;
             font-weight: 800;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             text-transform: uppercase;
-            letter-spacing: 0.6px;
+            letter-spacing: 0.5px;
         }
         .section-title {
-            font-size: 36px;
+            font-size: clamp(24px, 5vw, 34px);
             font-weight: 900;
             color: var(--text-primary);
-            letter-spacing: -0.8px;
-            margin-bottom: 12px;
+            letter-spacing: -0.6px;
+            margin-bottom: 8px;
         }
         .section-desc {
-            font-size: 17px;
+            font-size: 16px;
             color: var(--text-secondary);
-            max-width: 650px;
+            max-width: 600px;
             margin: 0 auto;
             font-weight: 600;
         }
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
         }
         .feature-card {
             background: var(--card-surface);
             border: 1.5px solid var(--border);
-            border-radius: 24px;
-            padding: 32px 26px;
+            border-radius: 20px;
+            padding: 26px 22px;
             box-shadow: var(--shadow-sm);
-            transition: all 0.25s ease;
-            position: relative;
+            transition: all 0.2s ease;
         }
         .feature-card:hover {
-            transform: translateY(-4px);
             border-color: var(--emerald);
-            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
         }
         .feature-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 16px;
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
-            margin-bottom: 20px;
+            font-size: 22px;
+            margin-bottom: 16px;
             background: var(--emerald-soft);
             color: var(--emerald-dark);
             border: 1px solid var(--emerald-border);
         }
         .feature-card h3 {
-            font-size: 19px;
+            font-size: 18px;
             font-weight: 800;
             color: var(--text-primary);
-            margin-bottom: 10px;
-            letter-spacing: -0.3px;
+            margin-bottom: 8px;
         }
         .feature-card p {
-            font-size: 14.5px;
+            font-size: 14px;
             color: var(--text-secondary);
-            line-height: 1.6;
+            line-height: 1.55;
         }
 
         /* Legal Center & 3 Tabs Section */
@@ -543,16 +519,15 @@
             background: var(--card-subtle);
             border-top: 1.5px solid var(--border);
             border-bottom: 1.5px solid var(--border);
-            padding: 80px 24px 90px;
-            position: relative;
+            padding: 60px 16px 70px;
         }
         .legal-container {
-            max-width: 1060px;
+            max-width: 1040px;
             margin: 0 auto;
         }
         .legal-header {
             text-align: center;
-            margin-bottom: 36px;
+            margin-bottom: 28px;
         }
 
         /* 3 Legal Tabs Switcher */
@@ -560,35 +535,34 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             flex-wrap: wrap;
-            margin-bottom: 32px;
+            margin-bottom: 24px;
         }
         .legal-tab-btn {
             background: var(--card-surface);
             color: var(--text-secondary);
             border: 1.5px solid var(--border);
-            padding: 12px 28px;
+            padding: 10px 22px;
             border-radius: 100px;
-            font-size: 15.5px;
+            font-size: 14.5px;
             font-weight: 800;
             cursor: pointer;
             transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             font-family: inherit;
         }
         .legal-tab-btn:hover {
             border-color: var(--emerald);
             color: var(--emerald-dark);
-            transform: translateY(-1px);
         }
         .legal-tab-btn.active {
             background: var(--emerald);
             color: #FFFFFF;
             border-color: var(--emerald-dark);
-            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.28);
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
         }
 
         /* Legal Tab Content Card */
@@ -596,38 +570,31 @@
             display: none;
             background: var(--card-surface);
             border: 1.5px solid var(--border);
-            border-radius: 28px;
-            padding: 44px 40px;
+            border-radius: 24px;
+            padding: 36px 30px;
             box-shadow: var(--shadow-md);
-            animation: fadeIn 0.3s ease;
         }
         .legal-tab-pane.active {
             display: block;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         .legal-pane-topbar {
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 16px;
-            padding-bottom: 24px;
-            margin-bottom: 32px;
+            gap: 14px;
+            padding-bottom: 20px;
+            margin-bottom: 24px;
             border-bottom: 1.5px solid var(--border);
         }
         .legal-pane-info h2 {
-            font-size: 26px;
+            font-size: clamp(22px, 4.5vw, 26px);
             font-weight: 900;
             color: var(--text-primary);
-            letter-spacing: -0.5px;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
         .legal-pane-info p {
-            font-size: 14px;
+            font-size: 13.5px;
             color: var(--text-muted);
             font-weight: 600;
         }
@@ -635,11 +602,11 @@
             background: var(--emerald-soft);
             color: var(--emerald-dark);
             border: 1px solid var(--emerald-border);
-            padding: 9px 18px;
+            padding: 8px 16px;
             border-radius: 100px;
             text-decoration: none;
             font-weight: 800;
-            font-size: 13.5px;
+            font-size: 13px;
             display: inline-flex;
             align-items: center;
             gap: 6px;
@@ -648,99 +615,95 @@
         .btn-standalone-link:hover {
             background: var(--emerald);
             color: #FFFFFF;
-            transform: translateY(-1px);
         }
 
-        /* Embedded Legal Typography */
         .legal-content {
-            font-size: 15px;
-            line-height: 1.75;
+            font-size: 14.5px;
+            line-height: 1.7;
             color: var(--text-primary);
         }
         .legal-content h1, .legal-content h2 {
             color: var(--text-primary);
             font-weight: 800;
-            margin-top: 32px;
-            margin-bottom: 12px;
-            letter-spacing: -0.3px;
+            margin-top: 28px;
+            margin-bottom: 10px;
         }
         .legal-content h2 {
-            font-size: 20px;
-            border-left: 4px solid var(--emerald);
-            padding-left: 12px;
+            font-size: 19px;
+            border-left: 3.5px solid var(--emerald);
+            padding-left: 10px;
         }
         .legal-content h3 {
-            font-size: 16.5px;
+            font-size: 16px;
             font-weight: 800;
-            margin-top: 20px;
-            margin-bottom: 8px;
+            margin-top: 18px;
+            margin-bottom: 6px;
         }
         .legal-content p {
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             color: var(--text-secondary);
         }
         .legal-content ul, .legal-content ol {
-            margin-bottom: 18px;
-            padding-left: 26px;
+            margin-bottom: 16px;
+            padding-left: 22px;
             color: var(--text-secondary);
         }
         .legal-content li {
-            margin-bottom: 8px;
+            margin-bottom: 7px;
         }
         .legal-content code {
             background: var(--card-subtle);
             border: 1px solid var(--border);
-            padding: 2px 7px;
-            border-radius: 6px;
-            font-size: 13.5px;
-            font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            padding: 2px 6px;
+            border-radius: 5px;
+            font-size: 13px;
+            font-family: monospace;
             color: var(--emerald-dark);
             font-weight: 700;
+            word-break: break-word;
         }
         .legal-content .highlight-box {
             background: var(--emerald-soft);
             border: 1.5px solid var(--emerald-border);
-            border-radius: 18px;
-            padding: 22px 24px;
-            margin: 24px 0;
+            border-radius: 16px;
+            padding: 18px 20px;
+            margin: 20px 0;
         }
         .legal-content .highlight-box h3 {
             color: var(--emerald-dark);
             margin-top: 0;
-            font-size: 17px;
         }
         .legal-content .highlight-box p {
             color: var(--emerald-dark);
             margin-bottom: 0;
-            font-size: 14.5px;
         }
         .legal-content .app-id-banner {
             background: var(--card-subtle);
             border: 1.5px solid var(--border);
-            border-radius: 16px;
-            padding: 16px 20px;
-            margin-bottom: 24px;
+            border-radius: 14px;
+            padding: 14px 18px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 12px;
-            font-size: 13.5px;
+            gap: 10px;
+            font-size: 13px;
             font-weight: 700;
         }
 
         /* Contact Section */
         .contact-section {
-            max-width: 900px;
-            margin: 80px auto;
-            padding: 0 24px;
+            max-width: 820px;
+            margin: 60px auto;
+            padding: 0 16px;
             text-align: center;
         }
         .contact-card {
             background: var(--card-surface);
             border: 1.5px solid var(--border);
-            border-radius: 28px;
-            padding: 48px 36px;
+            border-radius: 24px;
+            padding: 38px 24px;
             box-shadow: var(--shadow-md);
             position: relative;
             overflow: hidden;
@@ -751,110 +714,167 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 6px;
+            height: 5px;
             background: linear-gradient(90deg, var(--emerald), var(--emerald-dark));
         }
         .contact-card h2 {
-            font-size: 32px;
+            font-size: clamp(24px, 5vw, 30px);
             font-weight: 900;
-            margin-bottom: 12px;
-            letter-spacing: -0.5px;
+            margin-bottom: 10px;
         }
         .contact-card p {
-            font-size: 16px;
+            font-size: 15px;
             color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 28px;
+            max-width: 540px;
+            margin: 0 auto 22px;
         }
         .contact-email-box {
             display: inline-flex;
             align-items: center;
-            gap: 14px;
+            gap: 10px;
             background: var(--emerald-soft);
             border: 1.5px solid var(--emerald-border);
-            padding: 14px 28px;
+            padding: 12px 24px;
             border-radius: 100px;
             text-decoration: none;
             color: var(--emerald-dark);
             font-weight: 900;
-            font-size: 18px;
+            font-size: 17px;
             transition: all 0.2s ease;
         }
         .contact-email-box:hover {
             background: var(--emerald);
             color: #FFFFFF;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-emerald);
         }
 
         /* Footer */
         footer {
             background: #111417;
             color: #94A3B8;
-            padding: 50px 24px 40px;
+            padding: 40px 16px 32px;
             border-top: 1px solid #1E293B;
             margin-top: auto;
         }
         .footer-container {
-            max-width: 1160px;
+            max-width: 1140px;
             margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 24px;
+            gap: 20px;
         }
         .footer-brand {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             color: #FFFFFF;
             font-weight: 900;
-            font-size: 20px;
+            font-size: 19px;
             text-decoration: none;
         }
         .footer-brand img {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
         }
         .footer-links {
             display: flex;
             align-items: center;
-            gap: 24px;
+            gap: 18px;
             flex-wrap: wrap;
         }
         .footer-link {
             color: #94A3B8;
             text-decoration: none;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 13.5px;
             transition: color 0.2s ease;
         }
         .footer-link:hover {
             color: var(--emerald);
         }
         .footer-copy {
-            font-size: 13.5px;
+            font-size: 13px;
             color: #64748B;
             width: 100%;
             text-align: center;
-            margin-top: 30px;
-            padding-top: 24px;
+            margin-top: 24px;
+            padding-top: 20px;
             border-top: 1px solid #1E293B;
         }
 
-        /* Responsive */
+        /* MOBILE OPTIMIZATIONS (< 860px) */
         @media (max-width: 860px) {
-            .hero h1 { font-size: 38px; }
-            .hero p.lead { font-size: 17px; }
             .nav-links { display: none; }
-            .legal-tab-pane { padding: 28px 20px; }
-            .phone-card.left, .phone-card.right {
-                animation: none;
+            .hero { padding: 36px 16px 24px; }
+            .hero-actions .btn-primary, .hero-actions .btn-secondary {
+                width: 100%;
+                max-width: 320px;
             }
-            .phone-card.center {
-                animation: none;
+            
+            /* Native Touch Swipeable Showcase Track */
+            .showcase-slider-wrapper {
+                padding: 0 4px;
+            }
+            .showcase-grid {
+                justify-content: flex-start;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                gap: 16px;
+                padding: 10px 16px 20px;
+            }
+            .showcase-grid::-webkit-scrollbar {
+                display: none;
+            }
+            .phone-card {
+                flex: 0 0 82%;
+                max-width: 295px;
+                scroll-snap-align: center;
+                scroll-snap-stop: always;
+            }
+            .phone-frame {
+                width: min(265px, 75vw);
+                height: min(530px, 150vw);
+                border-radius: 36px;
+                padding: 8px;
+            }
+            .screen-container {
+                border-radius: 28px;
+            }
+            .carousel-dots {
+                display: flex;
+            }
+            .swipe-hint {
+                display: block;
+            }
+
+            /* Legal Tabs on Mobile */
+            .legal-tabs-nav {
+                gap: 8px;
+            }
+            .legal-tab-btn {
+                padding: 9px 16px;
+                font-size: 13.5px;
+            }
+            .legal-tab-pane {
+                padding: 24px 16px;
+                border-radius: 20px;
+            }
+            .btn-standalone-link {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+                justify-content: center;
+            }
+            .footer-links {
+                justify-content: center;
             }
         }
     </style>
@@ -867,18 +887,21 @@
             <a href="#" class="brand">
                 <img src="skrollify_logo.png" alt="Skrollify Logo">
                 <span>Skrollify</span>
-                <span class="brand-badge">Mindful Focus</span>
+                <span class="brand-badge">Mindful</span>
             </a>
-            <div class="nav-links">
-                <a href="#showcase" class="nav-link">Showcase</a>
-                <a href="#features" class="nav-link">Features</a>
-                <a href="#legal" class="nav-link highlight">Legals</a>
-                <a href="#contact" class="nav-link">Contact</a>
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="#showcase" class="nav-link">Showcase</a>
+                    <a href="#features" class="nav-link">Features</a>
+                    <a href="#legal" class="nav-link highlight">Legals</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+                <a href="#legal" class="nav-link highlight" style="display:inline-block; @media(min-width:861px){display:none;}">Legals</a>
+                <a href="https://play.google.com/store/apps/details?id=com.ayanhaider.skrollify" class="nav-btn" target="_blank" rel="noopener">
+                    <span>Get App</span>
+                    <span>↗</span>
+                </a>
             </div>
-            <a href="https://play.google.com/store/apps/details?id=com.ayanhaider.skrollify" class="nav-btn" target="_blank" rel="noopener">
-                <span>Download App</span>
-                <span>↗</span>
-            </a>
         </div>
     </nav>
 
@@ -886,15 +909,15 @@
     <section class="hero">
         <div class="hero-badge">
             <span>🌿</span>
-            <span>Android Digital Wellbeing & Short-Video Companion</span>
+            <span>Android Short-Video Digital Wellbeing</span>
         </div>
         <h1>
             Break Doomscrolling.<br>
             <span class="gradient">Reclaim Your Mind.</span>
         </h1>
         <p class="lead">
-            Skrollify transforms endless short-video consumption with living 2.5D emotional companions, 
-            a real-time floating reel counter HUD, and intelligent feed exit controls on Instagram, TikTok, YouTube Shorts, and Snapchat.
+            Skrollify brings living 2.5D emotional companions, real-time floating reel HUD counter overlays, 
+            and mindful exit controls to Instagram Reels, TikTok, YouTube Shorts, and Snapchat Spotlight.
         </p>
         <div class="hero-actions">
             <a href="https://play.google.com/store/apps/details?id=com.ayanhaider.skrollify" class="btn-primary" target="_blank" rel="noopener">
@@ -908,59 +931,72 @@
         </div>
     </section>
 
-    <!-- 3D Mobile Showcase -->
+    <!-- Mobile-First Swipeable Showcase Section -->
     <section class="showcase-section" id="showcase">
         <div class="showcase-header">
             <h2 class="showcase-title">Designed for Real Mindfulness</h2>
-            <p class="showcase-subtitle">See Skrollify in action: real-time companion feedback, floating live HUD, and mindful limits.</p>
+            <p class="showcase-subtitle">Static, clean, and touch-swipeable. See Skrollify in action:</p>
         </div>
 
-        <div class="showcase-grid">
-            <!-- Left Mockup: Home & Companion -->
-            <div class="phone-card left">
-                <div class="phone-frame">
-                    <div class="camera-notch"><div class="camera-lens"></div></div>
-                    <div class="screen-container">
-                        <img src="assets/screen_home_hd.jpg" alt="Skrollify Home Screen & 3D Companion" class="screen-img">
-                    </div>
-                </div>
-                <div class="phone-label">
-                    <span class="phone-label-tag">✨ 2.5D Living Companion</span>
-                    <p class="phone-label-desc">Tracks daily progress (111 / 150 scrolls), emotional reactions & per-app stats</p>
-                </div>
-            </div>
+        <!-- Quick Switcher Pills -->
+        <div class="showcase-nav-pills">
+            <button class="showcase-nav-pill active" onclick="scrollShowcaseTo(0)">1. Daily Companion</button>
+            <button class="showcase-nav-pill" onclick="scrollShowcaseTo(1)">2. Live Floating HUD</button>
+            <button class="showcase-nav-pill" onclick="scrollShowcaseTo(2)">3. Feed Controls</button>
+        </div>
 
-            <!-- Center Mockup (Hero Elevated): Live Floating HUD -->
-            <div class="phone-card center">
-                <div class="phone-frame">
-                    <div class="camera-notch"><div class="camera-lens"></div></div>
-                    <div class="screen-container">
-                        <!-- Glowing Floating HUD Overlay element -->
-                        <div class="floating-hud-overlay">
-                            <span class="hud-emoji">😊</span>
-                            <span class="hud-text"><span class="hud-count">42</span> reels · Steady Pace</span>
+        <!-- Swipeable Mobile Track (Static, Clean) -->
+        <div class="showcase-slider-wrapper">
+            <div class="showcase-grid" id="showcaseGrid">
+                <!-- Screen 1: Home Screen with 3D Companion -->
+                <div class="phone-card" id="card-0">
+                    <div class="phone-frame">
+                        <div class="camera-notch"><div class="camera-lens"></div></div>
+                        <div class="screen-container">
+                            <img src="assets/screen_home_hd.webp" alt="Skrollify Daily Companion Home Screen" class="screen-img">
                         </div>
-                        <img src="assets/screen_hud_hd.jpg" alt="Skrollify Real-time Floating HUD overlay" class="screen-img">
+                    </div>
+                    <div class="phone-label">
+                        <span class="phone-label-tag">🌿 2.5D Living Companion</span>
+                        <p class="phone-label-desc">Daily 111 / 150 scrolls ring, emotional shifts & per-app stats</p>
                     </div>
                 </div>
-                <div class="phone-label">
-                    <span class="phone-label-tag">⚡ Live Floating HUD</span>
-                    <p class="phone-label-desc">Non-intrusive interactive counter over Instagram Reels, Shorts & Spotlight</p>
+
+                <!-- Screen 2: Real Floating HUD over Short Video Feed -->
+                <div class="phone-card hero-card" id="card-1">
+                    <div class="phone-frame">
+                        <div class="camera-notch"><div class="camera-lens"></div></div>
+                        <div class="screen-container">
+                            <img src="assets/screen_hud_hd.webp" alt="Skrollify Real-Time Floating HUD Overlay on Short Video" class="screen-img">
+                        </div>
+                    </div>
+                    <div class="phone-label">
+                        <span class="phone-label-tag">⚡ Live Top Floating HUD</span>
+                        <p class="phone-label-desc">Exhausted decaying face alert & live counter (150) right over Reels</p>
+                    </div>
+                </div>
+
+                <!-- Screen 3: Scroll Control & Blocker -->
+                <div class="phone-card" id="card-2">
+                    <div class="phone-frame">
+                        <div class="camera-notch"><div class="camera-lens"></div></div>
+                        <div class="screen-container">
+                            <img src="assets/screen_control_hd.webp" alt="Skrollify Smart Break and Scroll Control Screen" class="screen-img">
+                        </div>
+                    </div>
+                    <div class="phone-label">
+                        <span class="phone-label-tag">🛡️ Smart Break & Strict Block</span>
+                        <p class="phone-label-desc">Auto-exit short videos while keeping chats, feeds & searches open</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- Right Mockup: Scroll Control & Blocker -->
-            <div class="phone-card right">
-                <div class="phone-frame">
-                    <div class="camera-notch"><div class="camera-lens"></div></div>
-                    <div class="screen-container">
-                        <img src="assets/screen_control_hd.jpg" alt="Skrollify Scroll Control & Feed Blocker" class="screen-img">
-                    </div>
-                </div>
-                <div class="phone-label">
-                    <span class="phone-label-tag">🛡️ Smart Break & Strict Block</span>
-                    <p class="phone-label-desc">Instant auto-exit from short videos while preserving chat, direct feeds & search</p>
-                </div>
+            <!-- Mobile Swipe Hint & Pagination Dots -->
+            <div class="swipe-hint" id="swipeHint">👉 Swipe to explore screens (1 of 3)</div>
+            <div class="carousel-dots">
+                <button class="carousel-dot active" onclick="scrollShowcaseTo(0)" aria-label="Screen 1"></button>
+                <button class="carousel-dot" onclick="scrollShowcaseTo(1)" aria-label="Screen 2"></button>
+                <button class="carousel-dot" onclick="scrollShowcaseTo(2)" aria-label="Screen 3"></button>
             </div>
         </div>
     </section>
@@ -970,32 +1006,32 @@
         <div class="section-header">
             <span class="section-badge">Mindful Architecture</span>
             <h2 class="section-title">Built Different from Other Blockers</h2>
-            <p class="section-desc">We don't shame you or lock down your entire phone. Skrollify brings awareness right to where dopamine traps happen.</p>
+            <p class="section-desc">We don't shame you or lock down your whole phone. Skrollify brings awareness right to where dopamine traps happen.</p>
         </div>
 
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">📊</div>
                 <h3>Real-Time Scroll Counting</h3>
-                <p>Precise vertical swipe detection across Instagram Reels, YouTube Shorts, TikTok, and Snapchat Spotlight. Powered locally by Android's AccessibilityService API.</p>
+                <p>Precise vertical swipe detection across Instagram Reels, YouTube Shorts, TikTok, and Snapchat Spotlight via Android's local AccessibilityService API.</p>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon">🎭</div>
                 <h3>Living 2.5D Companions</h3>
-                <p>Your animated companion stays happy and energized when mindful, gradually tiring and decaying as doomscrolling persists to visually mirror your mental fatigue.</p>
+                <p>Your companion stays vibrant and energized when mindful, gradually tiring and decaying as doomscrolling persists to visually mirror mental fatigue.</p>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon">⏳</div>
                 <h3>Smart Breaks & Auto-Exit</h3>
-                <p>Set mindful thresholds like a 5-minute breather every 10 videos, or enable Auto-Exit to instantly deflect short-video loops back to your chats.</p>
+                <p>Take a 5-minute breather every 10 videos, or enable Auto-Exit to instantly deflect short-video loops back to your personal messages.</p>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon">🔒</div>
                 <h3>100% On-Device Privacy</h3>
-                <p>Zero keystrokes logged, zero screen captures, zero audio/video recording. Your usage analytics remain strictly sandboxed on your personal device.</p>
+                <p>Zero keystrokes logged, zero screen captures, zero audio/video recording. Your metrics remain strictly sandboxed on your personal device.</p>
             </div>
         </div>
     </section>
@@ -1373,7 +1409,7 @@
                 <span>✉️</span>
                 <span>support@skrollify.com</span>
             </a>
-            <p style="margin-top: 18px; font-size: 13.5px; color: var(--text-muted); font-weight: 700;">
+            <p style="margin-top: 16px; font-size: 13.5px; color: var(--text-muted); font-weight: 700;">
                 Developer: Ayan Haider · Expected response time within 24–48 business hours.
             </p>
         </div>
@@ -1400,34 +1436,65 @@
         </div>
     </footer>
 
-    <!-- Interactive Script for Tab Switching -->
+    <!-- Interactive Scripts for Swipeable Showcase and Tab Switching -->
     <script>
+        // Showcase Carousel Swiping Logic
+        const grid = document.getElementById('showcaseGrid');
+        const cards = [document.getElementById('card-0'), document.getElementById('card-1'), document.getElementById('card-2')];
+        const dots = document.querySelectorAll('.carousel-dot');
+        const pills = document.querySelectorAll('.showcase-nav-pill');
+        const swipeHint = document.getElementById('swipeHint');
+
+        function scrollShowcaseTo(index) {
+            if (cards[index]) {
+                cards[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+            updateCarouselState(index);
+        }
+
+        function updateCarouselState(index) {
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+            pills.forEach((pill, i) => pill.classList.toggle('active', i === index));
+            if (swipeHint) {
+                const names = ['Daily Companion', 'Live Floating HUD', 'Feed Controls'];
+                swipeHint.textContent = `👉 Screen ${index + 1} of 3 (${names[index]})`;
+            }
+        }
+
+        // Listen for user finger swipes on mobile
+        let scrollTimeout;
+        grid.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                const scrollLeft = grid.scrollLeft;
+                const cardWidth = cards[0].offsetWidth + 16;
+                const activeIndex = Math.min(2, Math.max(0, Math.round(scrollLeft / cardWidth)));
+                updateCarouselState(activeIndex);
+            }, 50);
+        }, { passive: true });
+
+        // Legal Tabs Logic
         function switchLegalTab(tabId, clickedBtn) {
-            // Deactivate all panes
             const panes = document.querySelectorAll('.legal-tab-pane');
             panes.forEach(pane => pane.classList.remove('active'));
 
-            // Deactivate all buttons
             const btns = document.querySelectorAll('.legal-tab-btn');
             btns.forEach(btn => btn.classList.remove('active'));
 
-            // Activate targeted pane
             const targetPane = document.getElementById('pane-' + tabId);
             if (targetPane) {
                 targetPane.classList.add('active');
             }
 
-            // Activate button
             if (clickedBtn) {
                 clickedBtn.classList.add('active');
             } else {
-                // Find button by index/name
                 const matchBtn = Array.from(btns).find(b => b.textContent.toLowerCase().includes(tabId));
                 if (matchBtn) matchBtn.classList.add('active');
             }
         }
 
-        // Listen for direct hash anchors (e.g. #terms, #refund, #privacy)
+        // Listen for direct URL hash (#privacy, #terms, #refund)
         window.addEventListener('DOMContentLoaded', () => {
             const hash = window.location.hash.toLowerCase();
             if (hash.includes('terms')) {
